@@ -1,0 +1,97 @@
+<!-- HEADER COMPONENT -->
+<app-header></app-header>
+
+<!-- CATALOGUE CONTENT -->
+<div class="catalogue-container">
+  <!-- Back Button -->
+  <button class="back-btn" (click)="goBack()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+  </button>
+
+  <!-- Title -->
+  <h1 class="catalogue-title">Catalogue</h1>
+
+  <!-- Search and Filters Bar -->
+  <div class="filters-bar">
+    <div class="search-box">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearch()"
+        placeholder="Rechercher"
+        class="search-input"
+      />
+    </div>
+
+    <select [(ngModel)]="sortBy" (change)="onSort()" class="filter-select">
+      <option value="">Trier par</option>
+      <option value="price-asc">Prix croissant</option>
+      <option value="price-desc">Prix décroissant</option>
+      <option value="name">Nom</option>
+      <option value="date">Date d'ajout</option>
+    </select>
+
+    <select [(ngModel)]="filterBy" (change)="onFilter()" class="filter-select">
+      <option value="">Filtrer</option>
+      <option value="new">Nouveautés</option>
+      <option value="popular">Populaires</option>
+      <option value="promo">Promotions</option>
+      <option value="stock">En stock</option>
+    </select>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.title">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">{{ product.title }}</h3>
+        <p class="product-price">{{ product.price }}</p>
+        <button class="add-to-cart-btn" (click)="addToCart(product)">
+          <span>Ajouter au panier</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button 
+      class="pagination-btn" 
+      [class.disabled]="currentPage === 1"
+      (click)="previousPage()"
+      [disabled]="currentPage === 1"
+    >
+      Précédent
+    </button>
+
+    <button 
+      *ngFor="let page of getPageNumbers()"
+      class="pagination-number"
+      [class.active]="currentPage === page"
+      (click)="goToPage(page)"
+    >
+      {{ page }}
+    </button>
+
+    <button 
+      class="pagination-btn"
+      [class.disabled]="currentPage === totalPages"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Suivant
+    </button>
+  </div>
+</div>
