@@ -1,0 +1,32 @@
+# Angular build output
+/dist
+/tmp
+/out-tsc
+
+# Angular cache
+/.angular
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+pnpm-lock.yaml
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Misc
+.DS_Store
+Thumbs.db
+
+# Environment files (juste au cas où)
+# Tu peux les autoriser si besoin, mais par défaut on les ignore
+*.env
+*.env.local
+*.env.*.local
