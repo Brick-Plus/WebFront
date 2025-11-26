@@ -25,6 +25,8 @@ pnpm-lock.yaml
 .DS_Store
 Thumbs.db
 
+# Environment files (juste au cas où)
+# Tu peux les autoriser si besoin, mais par défaut on les ignore
 *.env
 *.env.local
 *.env.*.local
