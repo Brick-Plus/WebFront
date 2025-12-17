@@ -1,0 +1,105 @@
+<app-header></app-header>
+
+<main class="set-page">
+
+  <section class="set-hero">
+    <div class="content">
+      <h1>Set complet</h1>
+      <p>
+        Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </div>
+
+    <div class="hero-image"></div>
+  </section>
+
+  <section class="set-section">
+    <div class="text">
+      <h2>Set neuf</h2>
+      <p>
+        Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+
+      <button class="btn primary">Voir plus</button>
+    </div>
+
+    <div class="cards">
+      <div class="produit-card" *ngFor="let p of [1,2]">
+        <div class="image"></div>
+
+        <div class="infos">
+          <div class="title-row">
+            <span>Titre</span>
+            <span class="heart">♡</span>
+          </div>
+          <p>Description</p>
+          <span class="price">Prix € TTC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="set-section reverse">
+    <div class="cards">
+      <div class="produit-card">
+        <div class="image"></div>
+
+        <div class="infos">
+          <div class="title-row">
+            <span>Titre</span>
+            <span class="heart">♡</span>
+          </div>
+          <p>Description</p>
+          <span class="price">Prix € TTC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text">
+      <h2>Set d'occasion</h2>
+      <p>
+        Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+
+      <button class="btn primary">Voir plus</button>
+    </div>
+  </section>
+
+  <section class="set-section">
+    <div class="text">
+      <h2>Set polybag</h2>
+      <p>
+        Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+
+      <button class="btn primary">Voir plus</button>
+    </div>
+
+    <div class="cards">
+      <div class="produit-card" *ngFor="let p of [1,2]">
+        <div class="image"></div>
+
+        <div class="infos">
+          <div class="title-row">
+            <span>Titre</span>
+            <span class="heart">♡</span>
+          </div>
+          <p>Description</p>
+          <span class="price">Prix € TTC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<app-footer></app-footer>
