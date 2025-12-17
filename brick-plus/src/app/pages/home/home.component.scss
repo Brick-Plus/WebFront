@@ -7,11 +7,7 @@
   text-align: center;
   padding: 120px 20px 90px;
   color: white;
-  overflow: hidden;
-
-  background-image: url('/assets/images/lego.png');
-  background-size: cover;
-  background-position: center;
+  background: url('/assets/images/lego.png') center / cover no-repeat;
 
   &::before {
     content: '';
@@ -36,7 +32,6 @@
     font-size: 15px;
     max-width: 600px;
     margin: 0 auto 35px;
-    line-height: 1.5;
     color: #f1f1f1;
   }
 
@@ -47,59 +42,46 @@
   }
 }
 
-
 .btn {
-  font-family: 'Poppins', sans-serif;
   padding: 12px 22px;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
   cursor: pointer;
   border: none;
-  transition: all 0.2s ease;
+  font-family: inherit;
 
   &.primary {
     background: #214e34;
     color: white;
-
-    &:hover {
-      background: darken(#214e34, 6%);
-    }
   }
 
   &.secondary {
     background: white;
     color: #214e34;
     border: 1px solid #214e34;
-
-    &:hover {
-      background: #214e34;
-      color: white;
-    }
   }
 }
 
-
 .produits {
-  padding: 40px 60px;
+  padding: 50px 60px;
   background: #fff;
+}
 
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 
-    h2 {
-      font-size: 18px;
-      font-weight: 500;
-    }
+  h2 {
+    font-size: 18px;
+    font-weight: 500;
+  }
 
-    .nav-arrows span {
-      cursor: pointer;
-      margin-left: 10px;
-      font-size: 18px;
-    }
+  .nav-arrows span {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
   }
 }
 
@@ -111,7 +93,7 @@
 
 .produit-card {
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   background: white;
 
@@ -152,18 +134,74 @@
       cursor: pointer;
     }
   }
-
-
 }
+
 .see-more {
   display: flex;
   justify-content: center;
-  margin: 30px 0 50px;
+  margin: 40px 0 60px;
+}
+
+.sell {
+  background: #f3f3f3;
+  padding: 80px 20px;
+  margin: 80px 0;
+  text-align: center;
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 60px;
+  }
+}
+
+.sell-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sell-card {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 70px 25px 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    font-size: 16px;
+    color: #214e34;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .icon {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #214e34;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
 }
 
 .avis {
   text-align: center;
-  padding: 50px 20px;
+  padding: 60px 20px;
   background: #f2f2f2;
 
   h2 {
@@ -176,7 +214,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 
   .arrow {
     font-size: 22px;
@@ -195,7 +233,6 @@
   padding: 16px;
   width: 200px;
   font-size: 12px;
-  text-align: center;
 
   .avatar {
     width: 32px;
@@ -219,41 +256,17 @@
     color: #666;
   }
 }
-.cta {
-  background: white;
-  margin: 60px auto;
-  padding: 40px 20px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 900px;
-
-  h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 13px;
-    color: #555;
-    margin-bottom: 25px;
-  }
-}
-
-.cta-actions {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
 
 @media (max-width: 1024px) {
-  .produits-grid {
+  .produits-grid,
+  .sell-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .produits-grid {
+  .produits-grid,
+  .sell-cards {
     grid-template-columns: 1fr;
   }
 }
