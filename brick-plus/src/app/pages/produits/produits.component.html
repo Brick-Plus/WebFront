@@ -22,8 +22,8 @@
       </svg>
       <input 
         type="text" 
-        [(ngModel)]="searchTerm" 
-        (input)="onSearch()"
+        [ngModel]="searchTerm"
+        (ngModelChange)="onSearch($event)"
         placeholder="Rechercher"
         class="search-input"
       />
@@ -46,15 +46,49 @@
     </select>
   </div>
 
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Chargement des produits...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage && !isLoading" class="error-message">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <p>{{ errorMessage }}</p>
+  </div>
+
   <!-- Products Grid -->
-  <div class="products-grid">
+  <div *ngIf="!isLoading && !errorMessage" class="products-grid">
     <div *ngFor="let product of products" class="product-card">
-      <div class="product-image">
-        <img [src]="product.image" [alt]="product.title">
-      </div>
-      <div class="product-info">
+      <!-- Titre et Icône Favori en haut -->
+      <div class="product-header">
         <h3 class="product-title">{{ product.title }}</h3>
-        <p class="product-price">{{ product.price }}</p>
+        <button 
+          class="favorite-btn" 
+          [class.active]="product.isFavorite"
+          (click)="toggleFavorite(product, $event)"
+          aria-label="Ajouter aux favoris"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" [attr.fill]="product.isFavorite ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Image du produit -->
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.title" loading="lazy">
+      </div>
+
+      <!-- Informations en bas -->
+      <div class="product-footer">
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">{{ product.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</p>
         <button class="add-to-cart-btn" (click)="addToCart(product)">
           <span>Ajouter au panier</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -65,8 +99,18 @@
     </div>
   </div>
 
+  <!-- Message si aucun produit -->
+  <div *ngIf="!isLoading && !errorMessage && products.length === 0" class="no-products">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <p>Aucun produit trouvé</p>
+  </div>
+
   <!-- Pagination -->
-  <div class="pagination">
+  <div *ngIf="!isLoading && products.length > 0" class="pagination">
     <button 
       class="pagination-btn" 
       [class.disabled]="currentPage === 1"
@@ -93,5 +137,14 @@
     >
       Suivant
     </button>
+  </div>
+
+  <!-- Informations de pagination -->
+  <div *ngIf="!isLoading && products.length > 0" class="pagination-info">
+    <p>
+      Affichage de {{ (currentPage - 1) * pageSize + 1 }} à 
+      {{ Math.min(currentPage * pageSize, totalProducts) }} 
+      sur {{ totalProducts }} produits
+    </p>
   </div>
 </div>
