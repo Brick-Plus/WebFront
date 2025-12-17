@@ -1,1 +1,431 @@
-/* You can add global styles to this file, and also import other style files */
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-large: 1200px;
+
+// Couleurs
+$primary-color: #00B67A;
+$secondary-color: #214e34;
+$text-dark: #1a1a1a;
+$text-light: #666;
+$background: #f3f3f3;
+$white: #ffffff;
+
+// Espacements
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 20px;
+$spacing-lg: 40px;
+$spacing-xl: 60px;
+
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: $background;
+  color: $text-dark;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Conteneur responsive
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 50px;
+
+  @include tablet-down {
+    padding: 0 30px;
+  }
+
+  @include mobile {
+    padding: 0 20px;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 50px;
+
+  @include tablet-down {
+    padding: 0 30px;
+  }
+
+  @include mobile {
+    padding: 0 20px;
+  }
+}
+
+// Grilles responsive
+.grid {
+  display: grid;
+  gap: 30px;
+
+  &.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+    
+    @include tablet-down {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+    
+    @include large-screen {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @include tablet-down {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @include tablet-down {
+    gap: 20px;
+  }
+
+  @include mobile {
+    gap: 16px;
+  }
+}
+
+// Flex utilitaires
+.flex {
+  display: flex;
+  
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  &.flex-center {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &.flex-between {
+    justify-content: space-between;
+  }
+  
+  &.flex-column {
+    flex-direction: column;
+  }
+  
+  &.gap-sm { gap: 10px; }
+  &.gap-md { gap: 20px; }
+  &.gap-lg { gap: 30px; }
+  
+  @include mobile {
+    &.mobile-column {
+      flex-direction: column;
+    }
+  }
+}
+
+// Espacements responsive
+.section-padding {
+  padding: $spacing-xl $spacing-lg;
+  
+  @include tablet-down {
+    padding: $spacing-lg $spacing-md;
+  }
+  
+  @include mobile {
+    padding: $spacing-lg $spacing-md;
+  }
+}
+
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+.mt-xl { margin-top: $spacing-xl; }
+
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.mb-xl { margin-bottom: $spacing-xl; }
+
+.pt-sm { padding-top: $spacing-sm; }
+.pt-md { padding-top: $spacing-md; }
+.pt-lg { padding-top: $spacing-lg; }
+.pt-xl { padding-top: $spacing-xl; }
+
+.pb-sm { padding-bottom: $spacing-sm; }
+.pb-md { padding-bottom: $spacing-md; }
+.pb-lg { padding-bottom: $spacing-lg; }
+.pb-xl { padding-bottom: $spacing-xl; }
+
+// Visibilité responsive
+.hide-mobile {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.hide-tablet {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  @include desktop {
+    display: none !important;
+  }
+}
+
+.show-mobile {
+  display: none !important;
+  
+  @include mobile {
+    display: block !important;
+  }
+}
+
+.show-tablet {
+  display: none !important;
+  
+  @include tablet {
+    display: block !important;
+  }
+}
+
+// Texte responsive
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+@include mobile {
+  .mobile-text-center { text-align: center; }
+}
+
+.h1 {
+  font-size: 42px;
+  font-weight: bold;
+  
+  @include tablet-down {
+    font-size: 32px;
+  }
+  
+  @include mobile {
+    font-size: 28px;
+  }
+}
+
+.h2 {
+  font-size: 32px;
+  font-weight: bold;
+  
+  @include tablet-down {
+    font-size: 26px;
+  }
+  
+  @include mobile {
+    font-size: 22px;
+  }
+}
+
+.h3 {
+  font-size: 24px;
+  font-weight: 600;
+  
+  @include tablet-down {
+    font-size: 20px;
+  }
+  
+  @include mobile {
+    font-size: 18px;
+  }
+}
+
+// Boutons responsive
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  &.btn-primary {
+    background: $primary-color;
+    color: white;
+
+    &:hover {
+      background: darken($primary-color, 10%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.btn-secondary {
+    background: $secondary-color;
+    color: white;
+
+    &:hover {
+      background: lighten($secondary-color, 10%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.btn-outline {
+    background: white;
+    border: 2px solid $text-dark;
+    color: $text-dark;
+
+    &:hover {
+      background: $text-dark;
+      color: white;
+    }
+  }
+
+  &.btn-full {
+    width: 100%;
+  }
+
+  @include mobile {
+    padding: 10px 20px;
+    font-size: 14px;
+    
+    &.btn-mobile-full {
+      width: 100%;
+    }
+  }
+}
+
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  @include mobile {
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+
+  &:hover {
+    background: #555;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

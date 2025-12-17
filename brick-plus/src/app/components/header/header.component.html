@@ -2,7 +2,16 @@
   <div class="logo">Brick+</div>
   
   <nav class="nav">
-    <a routerLink="/boutique" class="nav-link">Boutique</a>
+    <div class="nav-item dropdown">
+    <span class="nav-link">Boutique</span>
+
+    <div class="dropdown-menu">
+      <a routerLink="/set-complet" class="dropdown-link">Set complet</a>
+      <a routerLink="/produits" class="dropdown-link">Set neuf</a>
+      <a routerLink="/produits" class="dropdown-link">Set d'occasion</a>
+      <a routerLink="/produits" class="dropdown-link">Polybag</a>
+    </div>
+  </div>
     <a routerLink="/themes" class="nav-link">Thèmes</a>
     <a routerLink="/vracs" class="nav-link">Les vracs</a>
     <a routerLink="/vendre" class="nav-link">Vendez les vôtres</a>

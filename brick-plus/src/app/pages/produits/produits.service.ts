@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 export interface Product {
   id: number;
@@ -10,10 +10,6 @@ export interface Product {
   price: number;
   image: string;
   isFavorite?: boolean;
-  category?: string;
-  stock?: number;
-  isNew?: boolean;
-  isPromo?: boolean;
 }
 
 export interface ProductResponse {
@@ -29,128 +25,99 @@ export interface ProductResponse {
 })
 export class ProduitsService {
   private apiUrl = 'http://localhost:8080/api/products';
+  private useMockData = true; // Basculer à false quand l'API est prête
 
   constructor(private http: HttpClient) {}
 
   /**
-   * Récupère la liste des produits avec pagination, recherche, tri et filtres
-   * TODO Backend: Implémenter l'endpoint GET /api/products avec les paramètres:
-   * - page: number (index de la page, commence à 0)
-   * - size: number (nombre de produits par page)
-   * - search: string (recherche dans title et description)
-   * - sort: string (price-asc, price-desc, name, date)
-   * - filter: string (new, popular, promo, stock)
+   * Récupère les produits (API ou mock selon configuration)
    */
-  getProducts(
-    page: number = 0,
-    size: number = 8,
-    search?: string,
-    sortBy?: string,
-    filter?: string
-  ): Observable<ProductResponse> {
+  getProducts(page: number, size: number, filters: any): Observable<ProductResponse> {
+    if (this.useMockData) {
+      return this.getMockProducts(page, size, filters);
+    }
+
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
 
-    if (search) {
-      params = params.set('search', search);
-    }
+    if (filters.search) params = params.set('search', filters.search);
+    if (filters.sort) params = params.set('sort', filters.sort);
+    if (filters.category) params = params.set('category', filters.category);
 
-    if (sortBy) {
-      params = params.set('sort', sortBy);
-    }
-
-    if (filter) {
-      params = params.set('filter', filter);
-    }
-
-    console.log('🔍 Appel API avec params:', { page, size, search, sortBy, filter });
-
-    return this.http.get<ProductResponse>(this.apiUrl, { params }).pipe(
-      catchError((error) => {
-        // En cas d'erreur backend, utilise des données statiques pour le développement
-        console.warn(' Backend non disponible - Utilisation de données statiques');
-        console.error('Détails erreur:', error);
-        return of(this.getStaticProducts(page, size, search, sortBy, filter));
-      })
-    );
+    return this.http.get<ProductResponse>(this.apiUrl, { params })
+      .pipe(catchError(() => this.getMockProducts(page, size, filters)));
   }
 
   /**
-   * Récupère un produit par son ID
-   * TODO Backend: Implémenter l'endpoint GET /api/products/{id}
+   * Ajoute au panier
    */
-  getProductById(id: number): Observable<Product | null> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`).pipe(
-      catchError(() => {
-        const product = this.staticProducts.find(p => p.id === id);
-        return of(product || null);
-      })
-    );
+  addToCart(productId: number): Observable<any> {
+    if (this.useMockData) {
+      return of({ success: true });
+    }
+
+    return this.http.post(`${this.apiUrl}/${productId}/cart`, { quantity: 1 })
+      .pipe(catchError(() => of({ success: true })));
   }
 
   /**
-   * Ajoute un produit au panier
-   * TODO Backend: Implémenter l'endpoint POST /api/products/{id}/cart
-   * Body attendu: { quantity: number }
-   * Response attendue: { success: boolean, message: string, cartItemCount: number }
-   */
-  addToCart(productId: number, quantity: number = 1): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${productId}/cart`, { quantity }).pipe(
-      catchError(() => {
-        console.log(` [DEV] Produit ${productId} ajouté au panier (quantité: ${quantity})`);
-        return of({ 
-          success: true, 
-          message: 'Produit ajouté au panier',
-          cartItemCount: 1 
-        });
-      })
-    );
-  }
-
-  /**
-   * Toggle le statut favori d'un produit
-   * TODO Backend: Implémenter l'endpoint POST /api/products/{id}/favorite
-   * Response attendue: { success: boolean, isFavorite: boolean }
-   * Note: Le backend doit gérer l'état des favoris par utilisateur (session ou JWT)
+   * Toggle favori
    */
   toggleFavorite(productId: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${productId}/favorite`, {}).pipe(
-      catchError(() => {
-        console.log(`[DEV] Toggle favori - Produit ${productId}`);
-        return of({ success: true, isFavorite: true });
-      })
-    );
+    if (this.useMockData) {
+      return of({ success: true });
+    }
+
+    return this.http.post(`${this.apiUrl}/${productId}/favorite`, {})
+      .pipe(catchError(() => of({ success: true })));
   }
 
   /**
-   * Récupère les favoris de l'utilisateur
-   * TODO Backend: Implémenter l'endpoint GET /api/products/favorites
-   * Note: Nécessite l'authentification utilisateur
+   * Données mock pour le développement
    */
-  getFavorites(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/favorites`).pipe(
-      catchError(() => {
-        const favorites = this.staticProducts.filter(p => p.isFavorite);
-        return of(favorites);
-      })
-    );
+  private getMockProducts(page: number, size: number, filters: any): Observable<ProductResponse> {
+    let products = [...this.mockProducts];
+
+    // Filtrage
+    if (filters.search) {
+      const search = filters.search.toLowerCase();
+      products = products.filter(p => 
+        p.title.toLowerCase().includes(search) ||
+        p.description.toLowerCase().includes(search)
+      );
+    }
+
+    // Tri
+    if (filters.sort === 'price-asc') {
+      products = products.sort((a, b) => a.price - b.price);
+    } else if (filters.sort === 'price-desc') {
+      products = products.sort((a, b) => b.price - a.price);
+    } else if (filters.sort === 'name') {
+      products = products.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    // Pagination
+    const total = products.length;
+    const start = page * size;
+    const paginated = products.slice(start, start + size);
+
+    return of({
+      content: paginated,
+      totalPages: Math.ceil(total / size),
+      totalElements: total,
+      currentPage: page,
+      pageSize: size
+    });
   }
 
-  /**
-   * Données statiques pour le développement (sans délai)
-   */
-  private staticProducts: Product[] = [
+  private mockProducts: Product[] = [
     {
       id: 1,
       title: 'LEGO Creator Expert La Tour Eiffel',
       description: 'Construisez la célèbre Tour Eiffel avec ce set détaillé de 10307 pièces',
       price: 629.99,
       image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=400&fit=crop',
-      category: 'Architecture',
-      stock: 15,
-      isNew: true,
-      isPromo: false,
       isFavorite: false
     },
     {
@@ -159,22 +126,14 @@ export class ProduitsService {
       description: 'Le vaisseau iconique avec 7541 pièces et figurines incluses',
       price: 849.99,
       image: 'https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=400&h=400&fit=crop',
-      category: 'Star Wars',
-      stock: 8,
-      isNew: false,
-      isPromo: true,
       isFavorite: true
     },
     {
       id: 3,
       title: 'LEGO Technic Bugatti Chiron',
-      description: 'Reproduction fidèle de la supercar avec système de transmission fonctionnel',
+      description: 'Reproduction fidèle de la supercar avec système de transmission',
       price: 379.99,
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
-      category: 'Technic',
-      stock: 22,
-      isNew: false,
-      isPromo: false,
       isFavorite: false
     },
     {
@@ -183,10 +142,6 @@ export class ProduitsService {
       description: 'Le château magique complet avec 6020 pièces et de nombreuses salles',
       price: 469.99,
       image: 'https://th.bing.com/th/id/R.3cf682288d8b05d74ec46abcb03b4c68?rik=hvx6n5Z6sogASw&pid=ImgRaw&r=0',
-      category: 'Harry Potter',
-      stock: 12,
-      isNew: true,
-      isPromo: true,
       isFavorite: false
     },
     {
@@ -195,10 +150,6 @@ export class ProduitsService {
       description: 'Piano fonctionnel avec mécanisme de touches automatique',
       price: 349.99,
       image: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=400&h=400&fit=crop',
-      category: 'Ideas',
-      stock: 18,
-      isNew: false,
-      isPromo: false,
       isFavorite: true
     },
     {
@@ -207,10 +158,6 @@ export class ProduitsService {
       description: 'Réplique authentique du Colisée romain avec 9036 pièces',
       price: 549.99,
       image: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=400&fit=crop',
-      category: 'Architecture',
-      stock: 0,
-      isNew: false,
-      isPromo: false,
       isFavorite: false
     },
     {
@@ -219,10 +166,6 @@ export class ProduitsService {
       description: 'Station spatiale modulaire avec modules scientifiques',
       price: 89.99,
       image: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=400&h=400&fit=crop',
-      category: 'City',
-      stock: 45,
-      isNew: true,
-      isPromo: false,
       isFavorite: false
     },
     {
@@ -231,83 +174,39 @@ export class ProduitsService {
       description: 'Temple asiatique avec dragon articulé et 6 figurines ninja',
       price: 199.99,
       image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop',
-      category: 'Ninjago',
-      stock: 28,
-      isNew: false,
-      isPromo: true,
+      isFavorite: false
+    },
+    {
+      id: 9,
+      title: 'LEGO Friends Parc aquatique',
+      description: 'Parc aquatique avec toboggans et piscine à vagues',
+      price: 119.99,
+      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&h=400&fit=crop',
+      isFavorite: false
+    },
+    {
+      id: 10,
+      title: 'LEGO Marvel Avengers Tower',
+      description: 'La tour des Avengers avec tous vos héros préférés',
+      price: 399.99,
+      image: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&h=400&fit=crop',
+      isFavorite: false
+    },
+    {
+      id: 11,
+      title: 'LEGO Speed Champions Ferrari',
+      description: 'Collection de voitures Ferrari iconiques',
+      price: 149.99,
+      image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=400&fit=crop',
+      isFavorite: false
+    },
+    {
+      id: 12,
+      title: 'LEGO Creator Expert Boutique',
+      description: 'Boutique de détail modulaire à 3 étages',
+      price: 179.99,
+      image: 'https://images.unsplash.com/photo-1558769132-cb1aea1f9582?w=400&h=400&fit=crop',
       isFavorite: false
     }
   ];
-
-  /**
-   * Applique filtres, tri et pagination sur les données statiques
-   */
-  private getStaticProducts(
-    page: number,
-    size: number,
-    search?: string,
-    sortBy?: string,
-    filter?: string
-  ): ProductResponse {
-    let products = [...this.staticProducts];
-
-    // Filtrage par recherche
-    if (search) {
-      const searchLower = search.toLowerCase();
-      products = products.filter(p => 
-        p.title.toLowerCase().includes(searchLower) ||
-        p.description.toLowerCase().includes(searchLower)
-      );
-    }
-
-    // Filtrage par catégorie/type
-    if (filter) {
-      switch (filter) {
-        case 'new':
-          products = products.filter(p => p.isNew);
-          break;
-        case 'popular':
-          products = products.filter(p => p.id <= 5);
-          break;
-        case 'promo':
-          products = products.filter(p => p.isPromo);
-          break;
-        case 'stock':
-          products = products.filter(p => (p.stock || 0) > 0);
-          break;
-      }
-    }
-
-    // Tri
-    if (sortBy) {
-      switch (sortBy) {
-        case 'price-asc':
-          products.sort((a, b) => a.price - b.price);
-          break;
-        case 'price-desc':
-          products.sort((a, b) => b.price - a.price);
-          break;
-        case 'name':
-          products.sort((a, b) => a.title.localeCompare(b.title));
-          break;
-        case 'date':
-          products.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
-          break;
-      }
-    }
-
-    // Pagination
-    const totalElements = products.length;
-    const totalPages = Math.ceil(totalElements / size);
-    const startIndex = page * size;
-    const paginatedProducts = products.slice(startIndex, startIndex + size);
-
-    return {
-      content: paginatedProducts,
-      totalPages: totalPages,
-      totalElements: totalElements,
-      currentPage: page,
-      pageSize: size
-    };
-  }
 }
