@@ -1,8 +1,85 @@
 <app-header></app-header>
 
-<main class="home-main">
-  <h1>Bienvenue sur BrickPlus</h1>
-  <p>Découvre nos sets, figurines et thèmes exclusifs !</p>
+<main class="home">
+  <section class="hero">
+    <h1>Bienvenue chez Brick+</h1>
+    <p class="subtitle">
+      Votre référence pour le rachat et la vente de LEGO d'occasion vérifiés.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn primary">Trouver des briques</button>
+      <button class="btn secondary">Revendre mes briques</button>
+    </div>
+  </section>
+
+  <section class="produits">
+    <div class="section-header">
+      <h2>Fraîchement arrivée</h2>
+      <div class="nav-arrows">
+        <span>‹</span>
+        <span>›</span>
+      </div>
+    </div>
+
+    <div class="produits-grid">
+      <div class="produit-card" *ngFor="let p of [1,2,3,4]">
+        <div class="image"></div>
+
+        <div class="infos">
+          <div class="title-row">
+            <span class="title">Titre produit</span>
+            <span class="heart">♡</span>
+          </div>
+
+          <p class="desc">Description</p>
+          <span class="price">Prix</span>
+
+          <button class="add-cart">
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+    </div>
+
+<div class="see-more">
+  <button class="btn primary">Tout voir</button>
+</div>
+
+<section class="avis">
+  <h2>Avis clients</h2>
+
+  <div class="avis-wrapper">
+    <span class="arrow">‹</span>
+
+    <div class="avis-cards">
+      <div class="avis-card" *ngFor="let a of [1,2,3]">
+        <div class="avatar"></div>
+        <span class="name">Pseudonyme</span>
+        <div class="stars">★★★★★</div>
+        <p class="comment">Commentaire</p>
+      </div>
+    </div>
+
+    <span class="arrow">›</span>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Prêt à commencer ?</h2>
+  <p>
+    Que vous cherchiez à acheter des sets rares ou à vendre votre collection,
+    Brick+ vous rend cela simple et sécurisé.
+  </p>
+
+  <div class="cta-actions">
+    <button class="btn primary">Créer un compte</button>
+    <button class="btn secondary">Parcourir le catalogue</button>
+  </div>
+</section>
+
+  </section>
+
 </main>
 
 <app-footer></app-footer>
