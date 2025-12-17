@@ -1,11 +1,23 @@
 <header class="header">
   <div class="header-container">
-    <div class="logo">
-      <span class="brand">Brick<span>+</span></span>
-    </div>
+  <div class="logo">
+  <a [routerLink]="['/home']" class="brand logo-link">
+    Brick<span>+</span>
+  </a>
+</div>
+
     <nav class="nav">
       <a routerLink="/" class="active">Accueil</a>
-      <a routerLink="/boutique">Boutique</a>
+     <div class="nav-item dropdown">
+       <a routerLink="/boutique">Boutique</a>
+       <div class="dropdown-menu">
+         <a routerLink="/boutique/set-complet">Set complet</a>
+         <a routerLink="/boutique/set-neuf">Set neuf</a>
+         <a routerLink="/boutique/set-occasion">Set d'occasion</a>
+         <a routerLink="/boutique/polybag">Polybag</a>
+       </div>
+     </div>
+
       <a routerLink="/vendre">Vendre mes Lego</a>
       <a routerLink="/application">L’application</a>
       <a routerLink="/a-propos">À propos de Brick+</a>
@@ -15,9 +27,10 @@
       <button class="icon-btn">
         <i class="material-icons">search</i>
       </button>
-      <button class="icon-btn">
-        <i class="material-icons">person</i>
-      </button>
+      <button class="icon-btn" [routerLink]="['/profile']">
+  <i class="material-icons">person</i>
+</button>
+
       <button class="icon-btn">
         <i class="material-icons">shopping_cart</i>
       </button>

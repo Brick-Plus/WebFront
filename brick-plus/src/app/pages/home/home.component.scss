@@ -13,7 +13,6 @@
   background-size: cover;
   background-position: center;
 
-  // Overlay sombre
   &::before {
     content: '';
     position: absolute;
@@ -22,7 +21,6 @@
     z-index: 1;
   }
 
-  // Tout le contenu passe au-dessus
   > * {
     position: relative;
     z-index: 2;
@@ -119,7 +117,7 @@
 
   .image {
     height: 160px;
-    background: url('/assets/images/lego-placeholder.jpg') center / cover;
+    background: url('/assets/images/lego.png') center / cover;
   }
 
   .infos {
