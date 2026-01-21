@@ -1,9 +1,17 @@
 {
-  "name": "brick-plus",
-  "short_name": "brick-plus",
+  "name": "Brick Plus",
+  "short_name": "Brick+",
+  "description": "Description de ton application Brick Plus",
+  "theme_color": "#1976d2",
+  "background_color": "#ffffff",
   "display": "standalone",
+  "orientation": "any",
   "scope": "./",
   "start_url": "./",
+  "id": "./",
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
   "icons": [
     {
       "src": "icons/icon-72x72.png",
@@ -52,6 +60,20 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/screenshot2.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ]
 }
