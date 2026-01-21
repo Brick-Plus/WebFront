@@ -1,0 +1,129 @@
+.card-price-ht, .card-price-ttc {
+	font-family: 'Poppins', sans-serif;
+}
+// Style pour la page setneuf.component (cards LEGO)
+.results-header {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 24px;
+	color: #222;
+	text-align: left;
+}
+
+.cards-container {
+	display: flex;
+	gap: 16px;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 32px;
+}
+
+.product-card {
+	width: 220px;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 2px 8px #0001;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #eee;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow 0.2s;
+}
+.product-card:hover {
+	box-shadow: 0 4px 16px #0002;
+}
+
+.card-img-top {
+	padding: 0;
+}
+.card-img-wrapper {
+	position: relative;
+}
+.card-img {
+	width: 100%;
+	height: 120px;
+	background: url('/assets/images/lego.png') center/cover no-repeat;
+	border-radius: 0;
+	display: block;
+}
+.card-badge {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	background: #2ecc9b;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 8px;
+	padding: 2px 8px;
+	font-weight: 600;
+	z-index: 2;
+}
+.card-bottom {
+	padding: 12px 12px 0 12px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.card-title {
+	font-weight: 700;
+	font-size: 18px;
+	color: #222;
+}
+.card-fav {
+	font-size: 20px;
+	color: #222;
+	cursor: pointer;
+	user-select: none;
+	transition: color 0.2s;
+}
+.card-fav:hover {
+	color: #2ecc9b;
+}
+.card-desc {
+	margin: 8px 0 12px 0;
+	color: #222;
+	font-size: 15px;
+}
+.card-prices {
+	margin-bottom: 12px;
+	font-size: 15px;
+}
+.card-price-ht {
+	font-weight: 700;
+	color: #2ecc9b;
+}
+.card-price-ttc {
+	font-weight: 700;
+	color: #222;
+}
+.card-btn {
+	width: 100%;
+	background: #fff;
+	border: 1.5px solid #222;
+	border-radius: 8px;
+	padding: 10px 0;
+	font-weight: 700;
+	font-size: 16px;
+	color: #222;
+	margin-bottom: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+.card-btn:hover {
+	background: #2ecc9b;
+	color: #fff;
+	border-color: #2ecc9b;
+}
+.card-btn-icon {
+	font-size: 18px;
+}
