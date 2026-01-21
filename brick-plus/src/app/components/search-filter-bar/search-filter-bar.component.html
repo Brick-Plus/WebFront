@@ -1,0 +1,30 @@
+<div class="filters-bar">
+  <!-- Search Box -->
+  <div class="search-box">
+    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input 
+      type="text" 
+      [ngModel]="searchTerm"
+      (ngModelChange)="onSearchInput($event)"
+      [placeholder]="searchPlaceholder"
+      class="search-input"
+    />
+  </div>
+
+  <!-- Sort Select -->
+  <select [(ngModel)]="sortBy" (change)="onSortChange()" class="filter-select">
+    <option *ngFor="let option of sortOptions" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <!-- Filter Select -->
+  <select [(ngModel)]="filterBy" (change)="onFilterChange()" class="filter-select">
+    <option *ngFor="let option of filterOptions" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+</div>
