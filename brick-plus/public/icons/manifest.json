@@ -1,0 +1,36 @@
+{
+  "icons": {
+    "search": "/icons/navigation/search.svg",
+    "menu": "/icons/navigation/menu.svg",
+    "back": "/icons/navigation/back.svg",
+    "arrow-up": "/icons/navigation/arrow-up.svg",
+    "arrow-right": "/icons/navigation/arrow-right.svg",
+    "arrow-down": "/icons/navigation/arrow-down.svg",
+    "chevron-left": "/icons/navigation/chevron-left.svg",
+    "chevron-right": "/icons/navigation/chevron-right.svg",
+
+    "profile": "/icons/user/profile.svg",
+    "logout": "/icons/user/logout.svg",
+
+    "add-to-cart": "/icons/commerce/add-to-cart.svg",
+    "shopping-bag": "/icons/commerce/shopping-bag.svg",
+    "shopping-cart": "/icons/commerce/shopping-cart.svg",
+
+    "send": "/icons/actions/send.svg",
+    "download": "/icons/actions/download.svg",
+    "plus": "/icons/actions/plus.svg",
+
+    "message-circle": "/icons/communication/message-circle.svg",
+    "messages": "/icons/communication/messages-square.svg",
+    "email": "/icons/communication/mini-email.svg",
+
+    "camera": "/icons/media/camera.svg",
+    "eye": "/icons/media/eye.svg",
+
+    "star": "/icons/status/star.svg",
+    "star-filled": "/icons/status/star-filled.svg",
+    "favorite": "/icons/status/favorite.svg",
+
+    "van": "/icons/misc/van.svg"
+  }
+}
