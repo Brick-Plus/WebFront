@@ -2,13 +2,11 @@
 $primary-color: #e67e22;
 $text-dark: #222;
 $text-light: #fff;
-$bg-light: #f4f4f4;
 
 .setoccasion-wrapper {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	background: $bg-light;
 }
 
 .results-header {

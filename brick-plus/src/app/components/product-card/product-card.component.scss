@@ -4,6 +4,7 @@
 // Style pour le composant product-card
 $primary-color: #00AE6D;
 $text-dark: #222;
+$text-gray: #7f8c8d;
 $text-light: #fff;
 $border-color: #eee;
 $shadow-sm: 0 2px 8px #0001;
@@ -17,7 +18,7 @@ $shadow-md: 0 4px 16px #0002;
 	background: $text-light;
 	border-radius: 10px;
 	box-shadow: $shadow-sm;
-	border: 2px solid transparent;
+	border: 2px solid #e0e0e0;
 	display: flex;
 	flex-direction: column;
 	transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
@@ -37,10 +38,8 @@ $shadow-md: 0 4px 16px #0002;
 }
 
 .card-title {
-	font-weight: 700;
-	font-size: 18px;
+	@include boldtext-large;
 	color: $text-dark;
-	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -123,11 +122,9 @@ $shadow-md: 0 4px 16px #0002;
 	color: $text-light;
 	padding: 6px 12px;
 	border-radius: 10px;
-	font-size: 12px;
-	font-weight: 600;
+	@include label-smallest;
 	text-transform: uppercase;
 	z-index: 10;
-  font-family: 'Poppins', sans-serif;
   box-shadow: $shadow-md;
 }
 
@@ -141,7 +138,7 @@ $shadow-md: 0 4px 16px #0002;
 }
 
 .card-desc {
-	@include text-small;
+	@include text-medium;
 	color: $text-dark;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -158,13 +155,14 @@ $shadow-md: 0 4px 16px #0002;
 }
 
 .card-price-ht {
-	color: #7f8c8d;
+  @include h3;
+	color: $text-gray;
 	text-decoration: line-through;
   margin-right: 10px;
 }
 
 .card-price-ttc {
-	font-weight: 600;
+	@include h3;
 	color: $primary-color;
 }
 
@@ -175,15 +173,13 @@ $shadow-md: 0 4px 16px #0002;
 	border: none;
 	padding: 10px 12px;
 	border-radius: 8px;
-	font-weight: 600;
-	font-size: medium;
+  @include label-large;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
 	transition: background 0.2s ease;
-	font-family: 'Poppins', sans-serif;
 
 	&:hover {
 		background: $primary-color;
