@@ -2,22 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  badge: string;
-  priceHT: number;
-  priceTTC: number;
-  isFavorite: boolean;
-}
+import { ProductCardComponent, Product } from '../../components/product-card/product-card.component';
 
 @Component({
   selector: 'app-setoccasion',
   standalone: true,
-  imports: [CommonModule, FooterComponent, HeaderComponent],
+  imports: [CommonModule, FooterComponent, HeaderComponent, ProductCardComponent],
   templateUrl: './setoccasion.component.html',
   styleUrls: ['./setoccasion.component.scss'],
 })
@@ -25,8 +15,8 @@ export class SetoccasionComponent {
   products: Product[] = [
     {
       id: 1,
-      title: 'Titre',
-      description: 'Description du produit 1',
+      title: 'City Grand Hôtel',
+      description: 'Set complet avec 3000+ briques, structure intacte et tous les minifigures incluses',
       image: '/assets/images/lego.png',
       badge: 'Nouveauté',
       priceHT: 25.00,
@@ -35,8 +25,8 @@ export class SetoccasionComponent {
     },
     {
       id: 2,
-      title: 'Titre',
-      description: 'Description du produit 2',
+      title: 'Star Wars Millennium Falcon',
+      description: 'Édition 2014, légèrement utilisé, toutes les pièces et instructions présentes',
       image: '/assets/images/lego.png',
       badge: 'Promo',
       priceHT: 45.50,
@@ -45,8 +35,8 @@ export class SetoccasionComponent {
     },
     {
       id: 3,
-      title: 'Titre',
-      description: 'Description du produit 3',
+      title: 'Technic Ferrari F40',
+      description: 'Véhicule motorisé avec moteurs inclus, très bon état, fonctionnel',
       image: '/assets/images/lego.png',
       badge: 'Stock limité',
       priceHT: 89.99,
@@ -55,8 +45,8 @@ export class SetoccasionComponent {
     },
     {
       id: 4,
-      title: 'Titre',
-      description: 'Description du produit 4',
+      title: 'Friends Maison des Rêves',
+      description: 'Construction modulable, 1200 pièces, parfait pour jeune créateur',
       image: '/assets/images/lego.png',
       badge: 'Bientôt épuisé',
       priceHT: 12.49,
@@ -65,8 +55,8 @@ export class SetoccasionComponent {
     },
     {
       id: 5,
-      title: 'Titre',
-      description: 'Description du produit 5',
+      title: 'Creator Expert Titanic',
+      description: 'Édition limitée officielle, 9000+ pièces, état neuf en boîte d\'origine',
       image: '/assets/images/lego.png',
       badge: 'Exclusif',
       priceHT: 199.00,
@@ -75,8 +65,8 @@ export class SetoccasionComponent {
     },
     {
       id: 6,
-      title: 'Titre',
-      description: 'Description du produit 6',
+      title: 'Classic Assortiment Couleurs',
+      description: 'Boîte mixte 500 pièces variées, idéale pour débuter les constructions libres',
       image: '/assets/images/lego.png',
       badge: 'Occasion',
       priceHT: 7.50,
@@ -85,8 +75,8 @@ export class SetoccasionComponent {
     },
     {
       id: 7,
-      title: 'Titre',
-      description: 'Description du produit 7',
+      title: 'Architecture Tour Eiffel',
+      description: 'Modèle iconique avec socle, 325 pièces, décoration élégante et moderne',
       image: '/assets/images/lego.png',
       badge: 'Meilleure vente',
       priceHT: 59.90,
@@ -95,8 +85,8 @@ export class SetoccasionComponent {
     },
     {
       id: 8,
-      title: 'Titre',
-      description: 'Description du produit 8',
+      title: 'Ninjago Temple d\'Airjitzu',
+      description: 'Grand ensemble avec 2000+ pièces et 6 figurines ninja, très détaillé',
       image: '/assets/images/lego.png',
       badge: 'Dernière pièce',
       priceHT: 34.90,
@@ -105,8 +95,8 @@ export class SetoccasionComponent {
     },
     {
       id: 9,
-      title: 'Titre',
-      description: 'Description du produit 9',
+      title: 'Harry Potter Château Poudlard',
+      description: 'Réplique magique du château, 6000+ pièces, structure imposante et collectible',
       image: '/assets/images/lego.png',
       badge: 'Coup de cœur',
       priceHT: 14.99,
@@ -115,8 +105,8 @@ export class SetoccasionComponent {
     },
     {
       id: 10,
-      title: 'Titre',
-      description: 'Description du produit 10',
+      title: 'Icons Bouquet Fleurs',
+      description: 'Set fleural avec 939 pièces, fleurs réalistes et vase élégant pour décoration',
       image: '/assets/images/lego.png',
       badge: 'Remise spéciale',
       priceHT: 79.00,

@@ -1,0 +1,195 @@
+// Import typography variables
+@use '../../../styles/typography' as *;
+
+// Style pour le composant product-card
+$primary-color: #00AE6D;
+$text-dark: #222;
+$text-light: #fff;
+$border-color: #eee;
+$shadow-sm: 0 2px 8px #0001;
+$shadow-md: 0 4px 16px #0002;
+
+// Carte produit
+.product-card {
+	width: 345px;
+  padding: 20px;
+  gap: 10px;
+	background: $text-light;
+	border-radius: 10px;
+	box-shadow: $shadow-sm;
+	border: 2px solid transparent;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+	overflow: hidden;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: $shadow-md;
+		border-color: $primary-color;
+	}
+}
+
+.card-header {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+}
+
+.card-title {
+	font-weight: 700;
+	font-size: 18px;
+	color: $text-dark;
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	flex: 1;
+	min-width: 0;
+}
+
+.card-fav-wrapper {
+	position: relative;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	user-select: none;
+	flex-shrink: 0;
+}
+
+.card-fav-inactive,
+.card-fav-active {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.card-fav-inactive {
+	display: block;
+}
+
+.card-fav-active {
+	display: none;
+}
+
+.card-fav-wrapper:hover .card-fav-inactive {
+	display: none;
+}
+
+.card-fav-wrapper:hover .card-fav-active {
+	display: block;
+}
+
+// Image
+.card-img-top {
+	padding: 0;
+	overflow: hidden;
+}
+
+.card-img-wrapper {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+  border-radius: 10px;
+	background: #f0f0f0;
+	overflow: hidden;
+}
+
+.card-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+  border-radius: 10px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: transform 0.3s ease;
+
+	.product-card:hover & {
+		transform: scale(1.05);
+	}
+}
+
+.card-badge {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	background: $primary-color;
+	color: $text-light;
+	padding: 6px 12px;
+	border-radius: 10px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	z-index: 10;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: $shadow-md;
+}
+
+// Contenu bas
+.card-bottom {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: space-between;
+  gap: 15px;
+}
+
+.card-desc {
+	@include text-small;
+	color: $text-dark;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.card-prices {
+	display: flex;
+	align-items: center;
+	@include boldtext-medium;
+	color: $text-dark;
+}
+
+.card-price-ht {
+	color: #7f8c8d;
+	text-decoration: line-through;
+  margin-right: 10px;
+}
+
+.card-price-ttc {
+	font-weight: 600;
+	color: $primary-color;
+}
+
+// Bouton
+.card-btn {
+	background: $text-dark;
+	color: $text-light;
+	border: none;
+	padding: 10px 12px;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: medium;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	transition: background 0.2s ease;
+	font-family: 'Poppins', sans-serif;
+
+	&:hover {
+		background: $primary-color;
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+}

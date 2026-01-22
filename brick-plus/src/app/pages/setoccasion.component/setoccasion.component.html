@@ -4,32 +4,12 @@
   <div class="results-header">{{ products.length }} résultats sur {{ products.length }}</div>
 
   <div class="cards-container">
-    <div class="product-card" *ngFor="let product of products">
-      <div class="card-header">
-        <span class="card-title">{{ product.title }}</span>
-        <span class="card-fav" (click)="toggleFavorite(product.id)"
-              [class.favorited]="product.isFavorite">♡</span>
-      </div>
-
-      <div class="card-img-top">
-        <div class="card-img-wrapper">
-          <div class="card-img" [style.backgroundImage]="'url(' + product.image + ')'"></div>
-          <span class="card-badge">{{ product.badge }}</span>
-        </div>
-      </div>
-
-      <div class="card-bottom">
-        <div class="card-desc">{{ product.description }}</div>
-        <div class="card-prices">
-          <span class="card-price-ht">{{ product.priceHT }}€</span>
-          <span> – </span>
-          <span class="card-price-ttc">{{ product.priceTTC }}€ TTC</span>
-        </div>
-        <button class="card-btn" (click)="addToCart(product.id)">
-          Ajouter au panier <span class="card-btn-icon">🛒</span>
-        </button>
-      </div>
-    </div>
+    <app-product-card
+      *ngFor="let product of products"
+      [product]="product"
+      (favoriteToggled)="toggleFavorite($event)"
+      (addedToCart)="addToCart($event)"
+    ></app-product-card>
   </div>
 
   <app-footer></app-footer>

@@ -2,10 +2,7 @@
 $primary-color: #e67e22;
 $text-dark: #222;
 $text-light: #fff;
-$border-color: #eee;
 $bg-light: #f4f4f4;
-$shadow-sm: 0 2px 8px #0001;
-$shadow-md: 0 4px 16px #0002;
 
 .setoccasion-wrapper {
 	min-height: 100vh;
@@ -31,168 +28,15 @@ $shadow-md: 0 4px 16px #0002;
 
 .cards-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
 	gap: 16px;
 	justify-content: center;
 	align-items: flex-start;
 	margin: 0 auto 32px;
 	width: 100%;
 	max-width: 1200px;
-	padding: 0 12px;
+
 	box-sizing: border-box;
-}
-
-// Carte produit
-.product-card {
-	width: 100%;
-	background: $text-light;
-	border-radius: 16px;
-	box-shadow: $shadow-sm;
-	border: 1px solid $border-color;
-	display: flex;
-	flex-direction: column;
-	transition: box-shadow 0.3s ease;
-	overflow: hidden;
-
-	&:hover {
-		box-shadow: $shadow-md;
-	}
-}
-
-.card-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 12px;
-}
-
-.card-title {
-	font-weight: 700;
-	font-size: 18px;
-	color: $text-dark;
-	font-family: 'Poppins', sans-serif;
-	margin: 0;
-}
-
-.card-fav {
-	font-size: 24px;
-	color: $text-dark;
-	cursor: pointer;
-	user-select: none;
-	transition: color 0.2s, transform 0.2s;
-
-	&:hover,
-	&.favorited {
-		color: $primary-color;
-		transform: scale(1.1);
-	}
-}
-
-// Image
-.card-img-top {
-	padding: 0;
-	overflow: hidden;
-}
-
-.card-img-wrapper {
-	position: relative;
-	width: 100%;
-	padding-bottom: 100%; // ratio 1:1
-	overflow: hidden;
-}
-
-.card-img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-.card-badge {
-	position: absolute;
-	top: 8px;
-	left: 8px;
-	background: $primary-color;
-	color: $text-light;
-	font-size: 12px;
-	border-radius: 6px;
-	padding: 4px 8px;
-	font-weight: 600;
-	z-index: 2;
-}
-
-// Contenu bas
-.card-bottom {
-	padding: 12px;
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-}
-
-.card-desc {
-	margin: 0 0 8px 0;
-	color: $text-dark;
-	font-size: 14px;
-	line-height: 1.4;
-}
-
-.card-prices {
-	margin-bottom: 12px;
-	font-size: 14px;
-	font-family: 'Poppins', sans-serif;
-}
-
-.card-price-ht {
-	font-weight: 700;
-	color: $primary-color;
-}
-
-.card-price-ttc {
-	font-weight: 700;
-	color: $text-dark;
-}
-
-// Bouton
-.card-btn {
-	width: 100%;
-	background: $text-light;
-	border: 1.5px solid $text-dark;
-	border-radius: 8px;
-	padding: 10px 8px;
-	font-weight: 700;
-	font-size: 14px;
-	font-family: 'Poppins', sans-serif;
-	color: $text-dark;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	cursor: pointer;
-	transition: all 0.2s ease;
-
-	&:hover {
-		background: $primary-color;
-		border-color: $primary-color;
-		color: $text-light;
-	}
-
-	&:active {
-		transform: scale(0.98);
-	}
-}
-
-.card-btn-icon {
-	font-size: 18px;
-}
-
-app-footer {
-	margin-top: auto;
-	width: 100%;
-	display: block;
 }
 
 // Responsive
