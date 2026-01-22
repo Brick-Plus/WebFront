@@ -1,7 +1,4 @@
-.card-price-ht, .card-price-ttc {
-	font-family: 'Poppins', sans-serif;
-}
-// Style pour la page setneuf.component (cards LEGO)
+// Style pour la page setoccasion.component (cards LEGO occasion)
 .results-header {
 	font-size: 18px;
 	font-weight: 600;
@@ -10,12 +7,58 @@
 	text-align: left;
 }
 
-.cards-container {
+.setoccasion-wrapper {
+	min-height: 100vh;
 	display: flex;
-	gap: 16px;
-	justify-content: flex-start;
+	flex-direction: column;
+	background: #f4f4f4;
+}
+
+.cards-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px 12px;
+	justify-content: center;
 	align-items: flex-start;
 	margin-bottom: 32px;
+	margin-top: 40px;
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.product-card {
+	width: 360px;
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 2px 8px #0001;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #eee;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow 0.2s;
+}
+.product-card:hover {
+	box-shadow: 0 4px 16px #0002;
+}
+
+.card-img {
+	width: 100%;
+	aspect-ratio: 1/1;
+	background: url('/assets/images/lego.png') center/cover no-repeat;
+	border-top-left-radius: 18px;
+	border-top-right-radius: 18px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	display: block;
+}
+app-footer {
+	margin-top: auto;
+	width: 100%;
+	display: block;
 }
 
 .product-card {
@@ -51,7 +94,7 @@
 	position: absolute;
 	top: 8px;
 	left: 8px;
-	background: #2ecc9b;
+	background: #e67e22;
 	color: #fff;
 	font-size: 12px;
 	border-radius: 8px;
@@ -69,21 +112,23 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 18px 18px 0 18px;
 }
 .card-title {
 	font-weight: 700;
-	font-size: 18px;
+	font-size: 24px;
 	color: #222;
+	font-family: 'Poppins', sans-serif;
 }
 .card-fav {
-	font-size: 20px;
+	font-size: 26px;
 	color: #222;
 	cursor: pointer;
 	user-select: none;
 	transition: color 0.2s;
 }
 .card-fav:hover {
-	color: #2ecc9b;
+	color: #e67e22;
 }
 .card-desc {
 	margin: 8px 0 12px 0;
@@ -94,9 +139,12 @@
 	margin-bottom: 12px;
 	font-size: 15px;
 }
+.card-price-ht, .card-price-ttc {
+	font-family: 'Poppins', sans-serif;
+}
 .card-price-ht {
 	font-weight: 700;
-	color: #2ecc9b;
+	color: #e67e22;
 }
 .card-price-ttc {
 	font-weight: 700;
@@ -120,10 +168,60 @@
 	transition: background 0.2s, color 0.2s;
 }
 .card-btn:hover {
-	background: #2ecc9b;
-	color: #fff;
-	border-color: #2ecc9b;
-}
-.card-btn-icon {
-	font-size: 18px;
+	.card-bottom {
+		padding: 18px 18px 0 18px;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.card-desc {
+		margin: 8px 0 12px 0;
+		color: #222;
+		font-size: 20px;
+		font-family: 'Poppins', sans-serif;
+	}
+	.card-prices {
+		margin-bottom: 12px;
+		font-size: 18px;
+		font-family: 'Poppins', sans-serif;
+	}
+	.card-price-ht, .card-price-ttc {
+		font-family: 'Poppins', sans-serif;
+	}
+	.card-price-ht {
+		font-weight: 700;
+		color: #e67e22;
+		font-size: 20px;
+	}
+	.card-price-ttc {
+		font-weight: 700;
+		color: #222;
+		font-size: 20px;
+	}
+	.card-btn {
+		width: 100%;
+		background: #fff;
+		border: 2px solid #222;
+		border-radius: 10px;
+		padding: 14px 0;
+		font-weight: 700;
+		font-size: 22px;
+		color: #222;
+		margin-bottom: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		cursor: pointer;
+		transition: background 0.2s, color 0.2s;
+		font-family: 'Poppins', sans-serif;
+	}
+	.card-btn:hover {
+		background: #e67e22;
+		color: #fff;
+		border-color: #e67e22;
+	}
+	.card-btn-icon {
+		font-size: 24px;
+	}
 }
