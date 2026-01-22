@@ -1,96 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+<div class="setoccasion-wrapper">
   <app-header></app-header>
-  <div class="results-header">3 résultats sur 3</div>
-<div class="cards-container">
-  <div class="product-card">
-      <div class="card-header card-header-top">
-        <span class="card-title">Titre</span>
-        <span class="card-fav">♡</span>
-      </div>
-      <div class="card-img-top">
-        <div class="card-img-wrapper">
-          <div class="card-img"></div>
-          <span class="card-badge">Nouveauté</span>
-        </div>
-      </div>
-      <div class="card-bottom">
-        <div class="card-desc">Description</div>
-        <div class="card-prices">
-          <span class="card-price-ht">Prix €</span>
-          <span> – </span>
-          <span class="card-price-ttc">Prix € TTC</span>
-        </div>
-        <button class="card-btn">
-          Ajouter au panier <span class="card-btn-icon">🛒</span>
-        </button>
-      </div>
-  </div>
-  <div class="product-card">
-      <div class="card-header card-header-top">
-        <span class="card-title">Titre</span>
-        <span class="card-fav">♡</span>
-      </div>
-      <div class="card-img-top">
-        <div class="card-img-wrapper">
-          <div class="card-img"></div>
-          <span class="card-badge">Nouveauté</span>
-        </div>
-      </div>
-      <div class="card-bottom">
-        <div class="card-desc">Description</div>
-        <div class="card-prices">
-          <span class="card-price-ht">Prix €</span>
-          <span> – </span>
-          <span class="card-price-ttc">Prix € TTC</span>
-        </div>
-        <button class="card-btn">
-          Ajouter au panier <span class="card-btn-icon">🛒</span>
-        </button>
-      </div>
-  </div>
-  <div class="product-card">
-      <div class="card-header card-header-top">
-        <span class="card-title">Titre</span>
-        <span class="card-fav">♡</span>
-      </div>
-      <div class="card-img-top">
-        <div class="card-img-wrapper">
-          <div class="card-img"></div>
-          <span class="card-badge">Nouveauté</span>
-        </div>
-      </div>
-      <div class="card-bottom">
-        <div class="card-desc">Description</div>
-        <div class="card-prices">
-          <span class="card-price-ht">Prix €</span>
-          <span> – </span>
-          <span class="card-price-ttc">Prix € TTC</span>
-        </div>
-        <button class="card-btn">
-          Ajouter au panier <span class="card-btn-icon">🛒</span>
-        </button>
-      </div>
-	  <div class="card-bottom">
-        <div class="card-desc">Description</div>
-        <div class="card-prices">
-          <span class="card-price-ht">Prix €</span>
-          <span> – </span>
-          <span class="card-price-ttc">Prix € TTC</span>
-        </div>
-        <button class="card-btn">
-          Ajouter au panier <span class="card-btn-icon">🛒</span>
-        </button>
-      </div>
-  </div>
-</div>
 
-</body>
-<app-footer></app-footer>
-</html>
+  <div class="results-header">{{ products.length }} résultats sur {{ products.length }}</div>
+
+  <div class="cards-container">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="card-header">
+        <span class="card-title">{{ product.title }}</span>
+        <span class="card-fav" (click)="toggleFavorite(product.id)"
+              [class.favorited]="product.isFavorite">♡</span>
+      </div>
+
+      <div class="card-img-top">
+        <div class="card-img-wrapper">
+          <div class="card-img" [style.backgroundImage]="'url(' + product.image + ')'"></div>
+          <span class="card-badge">{{ product.badge }}</span>
+        </div>
+      </div>
+
+      <div class="card-bottom">
+        <div class="card-desc">{{ product.description }}</div>
+        <div class="card-prices">
+          <span class="card-price-ht">{{ product.priceHT }}€</span>
+          <span> – </span>
+          <span class="card-price-ttc">{{ product.priceTTC }}€ TTC</span>
+        </div>
+        <button class="card-btn" (click)="addToCart(product.id)">
+          Ajouter au panier <span class="card-btn-icon">🛒</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
