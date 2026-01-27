@@ -17,10 +17,11 @@
 
   <div class="card-img-top">
     <div class="card-img-wrapper">
-      <div
+      <img
         class="card-img"
-        [style.backgroundImage]="'url(' + product.image + ')'"
-      ></div>
+        [src]="product.image"
+        [alt]="product.title"
+      />
       <span class="card-badge">{{ product.badge }}</span>
     </div>
   </div>
