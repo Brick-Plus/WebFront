@@ -3,6 +3,7 @@
 
 // Style pour le composant product-card
 $primary-color: #00AE6D;
+$primary-active-color: #008454;
 $text-dark: #222;
 $text-gray: #7f8c8d;
 $text-light: #fff;
@@ -186,6 +187,6 @@ $shadow-md: 0 4px 16px #0002;
 	}
 
 	&:active {
-		transform: scale(0.98);
+		background: $primary-active-color;
 	}
 }
