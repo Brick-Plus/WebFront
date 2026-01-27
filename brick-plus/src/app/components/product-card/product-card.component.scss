@@ -122,11 +122,11 @@ $shadow-md: 0 4px 16px #0002;
 	background: $primary-color;
 	color: $text-light;
 	padding: 6px 12px;
-	border-radius: 10px;
+	border-radius: 7.5px;
 	@include label-smallest;
 	text-transform: uppercase;
 	z-index: 10;
-  box-shadow: $shadow-md;
+  box-shadow: $shadow-sm;
 }
 
 // Contenu bas
