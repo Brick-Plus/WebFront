@@ -1,6 +1,8 @@
 <app-header></app-header>
 
 <main class="home">
+
+  <!-- HERO -->
   <section class="hero">
     <h1>Bienvenue chez Brick+</h1>
     <p class="subtitle">
@@ -13,9 +15,10 @@
     </div>
   </section>
 
+  <!-- NOUVEAUTÉS -->
   <section class="produits">
     <div class="section-header">
-      <h2>Derniers ajouts</h2>
+      <h2>Nouveautés</h2>
       <div class="nav-arrows">
         <span>‹</span>
         <span>›</span>
@@ -24,90 +27,142 @@
 
     <div class="produits-grid">
       <div class="produit-card" *ngFor="let p of [1,2,3,4]">
+        <div class="badge">Nouveauté</div>
         <div class="image"></div>
 
         <div class="infos">
           <div class="title-row">
-            <span class="title">Titre du produit</span>
+            <span class="title">Titre</span>
             <span class="heart">♡</span>
           </div>
 
           <p class="desc">Description</p>
-          <span class="price">Prix € TTC</span>
+          <span class="price">Prix € – TTC</span>
 
-          <button class="add-cart">
-            Ajouter au panier
-          </button>
+          <button class="add-cart">Ajouter au panier</button>
         </div>
       </div>
     </div>
-
-    <div class="see-more">
-      <button class="btn primary">Tout voir</button>
-    </div>
-
-    <section class="sell">
-      <h2>
-        Vendez votre collection LEGO® au prix juste, en toute simplicité.
-      </h2>
-
-      <div class="sell-cards">
-        <div class="sell-card">
-          <div class="icon">🛠</div>
-          <h3>Rachat sur Mesure & Expertise</h3>
-          <p>
-            Du set unique à la collection complète,
-            <strong>nous estimons avec précision</strong>
-            la valeur de vos LEGO®.
-            Prix de rachat équitable sous 48h.
-          </p>
-        </div>
-
-        <div class="sell-card">
-          <div class="icon">🤝</div>
-          <h3>Transaction 100% Sereine</h3>
-          <p>
-            Processus <strong>simplifié</strong>,
-            offre officielle et
-            <strong>paiement rapide</strong>,
-            sans négociations interminables.
-          </p>
-        </div>
-
-        <div class="sell-card">
-          <div class="icon">♻️</div>
-          <h3>Échange & Seconde Vie</h3>
-          <p>
-            Échangez vos anciens sets contre
-            de nouvelles pépites disponibles
-            dans la boutique.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="avis">
-      <h2>Avis clients</h2>
-
-      <div class="avis-wrapper">
-        <span class="arrow">‹</span>
-
-        <div class="avis-cards">
-          <div class="avis-card" *ngFor="let a of [1,2,3]">
-            <div class="avatar"></div>
-            <span class="name">Pseudonyme</span>
-            <div class="stars">★★★★★</div>
-            <p class="comment">
-              Super expérience, rapide et fiable.
-            </p>
-          </div>
-        </div>
-
-        <span class="arrow">›</span>
-      </div>
-    </section>
-
   </section>
+
+  <!-- CATÉGORIES -->
+  <section class="categories">
+    <h2>Catégories</h2>
+
+    <div class="categories-grid">
+      <div class="category-card">Sets occasion</div>
+      <div class="category-card">Sets neufs</div>
+      <div class="category-card">Figurines occasion</div>
+      <div class="category-card">Autres figurines</div>
+      <div class="category-card">Pièces & vrac</div>
+      <div class="category-card">Polybag</div>
+    </div>
+  </section>
+
+  <!-- VENDRE -->
+  <section class="sell">
+    <h2>Vendez votre collection LEGO® au prix juste, en toute simplicité.</h2>
+
+    <div class="sell-cards">
+      <div class="sell-card">
+        <div class="icon">🛠</div>
+        <h3>Rachat sur mesure</h3>
+        <p>Estimation précise et équitable sous 48h.</p>
+      </div>
+
+      <div class="sell-card">
+        <div class="icon">🤝</div>
+        <h3>Transaction sereine</h3>
+        <p>Paiement rapide, sans négociation interminable.</p>
+      </div>
+
+      <div class="sell-card">
+        <div class="icon">♻️</div>
+        <h3>Seconde vie</h3>
+        <p>Donnez une nouvelle vie à vos LEGO®.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUI SOMMES-NOUS -->
+  <section class="about">
+    <div class="about-text">
+      <h2>Brick+ qui sommes nous ?</h2>
+      <p>
+        Brick+ est une boutique LEGO® française, spécialisée dans le rachat et la vente de LEGO®.
+        Nous nous focalisons principalement sur l’occasion, permettant à chacun de trouver des sets rares à prix compétitifs.
+      </p>
+      <button class="btn primary">En savoir plus</button>
+    </div>
+
+    <div class="about-image"></div>
+  </section>
+
+  <!-- AVIS -->
+ <section class="avis">
+  <h2>Avis clients</h2>
+
+  <div class="avis-wrapper">
+    <button class="arrow-btn">‹</button>
+
+    <div class="avis-cards">
+      <div class="avis-card" *ngFor="let a of [1,2,3,4]">
+        <div class="avis-top">
+          <span class="name">Pseudonyme</span>
+          <span class="date">10/01/2025</span>
+        </div>
+
+        <div class="stars">
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star_border</i>
+        </div>
+
+        <p class="comment">
+          Commentaire
+        </p>
+      </div>
+    </div>
+
+    <button class="arrow-btn">›</button>
+  </div>
+</section>
+
+
+  <!-- FORMULAIRE VENTE -->
+  <section class="sell-form">
+    <div class="form-left">
+      <h3>Vous souhaitez vendre vos LEGO ?</h3>
+      <input type="email" placeholder="Email" />
+      <textarea placeholder="Que souhaitez-vous nous présenter ?"></textarea>
+      <textarea placeholder="Partagez vos photos du produit"></textarea>
+      <button class="btn primary">Envoyer</button>
+    </div>
+
+    <div class="form-right">
+      <h3>Comment ça marche ?</h3>
+      <ul>
+        <li>Que pouvez-vous vendre ?</li>
+        <li>Comment fonctionne un rachat ?</li>
+        <li>Comment se passe le paiement ?</li>
+        <li>Comment nous contacter ?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <h2>Complétez votre collection ou libérez de l’espace.</h2>
+    <p>Brick+ rend cela simple et sécurisé.</p>
+
+    <div class="cta-actions">
+      <button class="btn primary">Créer un compte</button>
+      <button class="btn secondary">Parcourir le catalogue</button>
+    </div>
+  </section>
+
 </main>
 
 <app-footer></app-footer>
