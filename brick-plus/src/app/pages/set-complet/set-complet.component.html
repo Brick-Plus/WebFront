@@ -12,7 +12,6 @@
         laboris nisi ut aliquip ex ea commodo consequat.
       </p>
     </div>
-
     <div class="hero-image"></div>
   </section>
 
@@ -20,29 +19,25 @@
   <section class="set-section">
     <div class="text">
       <h2>Set neuf</h2>
-      <p>
+      <p>Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Description du produit : lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-        Description du produit : lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
-
       <button class="btn primary">Voir plus</button>
     </div>
 
     <div class="cards">
       <div class="produit-card" *ngFor="let p of [1,2]">
+        <div class="infos-top">
+          <span>Titre</span>
+          <span class="heart">♡</span>
+        </div>
         <div class="image">
+          <span class="badge">Nouveauté</span>
           <img src="assets/images/lego.jpg" alt="LEGO">
         </div>
-
         <div class="infos">
-          <div class="title-row">
-            <span>Titre</span>
-            <span class="heart">♡</span>
-          </div>
           <p>Description</p>
           <span class="price">Prix € TTC</span>
         </div>
@@ -53,16 +48,15 @@
   <!-- Set d'occasion -->
   <section class="set-section">
     <div class="produit-card large">
-      <span class="badge">Nouveauté</span>
+      <div class="infos-top">
+        <span>Titre</span>
+        <span class="heart">♡</span>
+      </div>
       <div class="image">
+        <span class="badge">Nouveauté</span>
         <img src="assets/images/lego.jpg" alt="LEGO">
       </div>
-
       <div class="infos">
-        <div class="title-row">
-          <span>Titre</span>
-          <span class="heart">♡</span>
-        </div>
         <p>Description</p>
         <span class="price">Prix € - Prix € TTC</span>
       </div>
@@ -70,15 +64,11 @@
 
     <div class="text">
       <h2>Set d'occasion</h2>
-      <p>
+      <p>Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Description du produit : lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Description du produit : lorem ipsum dolor sit amet, 
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
-
       <button class="btn primary">En savoir plus</button>
     </div>
   </section>
@@ -87,29 +77,25 @@
   <section class="set-section">
     <div class="text">
       <h2>Set polybag</h2>
-      <p>
+      <p>Description du produit : lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Description du produit : lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-        Description du produit : lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
-
       <button class="btn primary">Voir plus</button>
     </div>
 
     <div class="cards">
-      <div class="produit-card" *ngFor="let p of [1,2]">
+      <div class="produit-card" >
+        <div class="infos-top">
+          <span>Titre</span>
+          <span class="heart">♡</span>
+        </div>
         <div class="image">
+          <span class="badge">Nouveauté</span>
           <img src="assets/images/lego.jpg" alt="LEGO">
         </div>
-
         <div class="infos">
-          <div class="title-row">
-            <span>Titre</span>
-            <span class="heart">♡</span>
-          </div>
           <p>Description</p>
           <span class="price">Prix € TTC</span>
         </div>
@@ -117,4 +103,37 @@
     </div>
   </section>
 
+    <!-- AVIS -->
+ <section class="avis">
+  <h2>Avis clients</h2>
+
+  <div class="avis-wrapper">
+    <button class="arrow-btn">‹</button>
+
+    <div class="avis-cards">
+      <div class="avis-card" *ngFor="let a of [1,2,3,4]">
+        <div class="avis-top">
+          <span class="name">Pseudonyme</span>
+          <span class="date">10/01/2025</span>
+        </div>
+
+        <div class="stars">
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star_border</i>
+        </div>
+
+        <p class="comment">
+          Commentaire
+        </p>
+      </div>
+    </div>
+
+    <button class="arrow-btn">›</button>
+  </div>
+</section>
 </main>
+
+<app-footer></app-footer>
