@@ -1,0 +1,144 @@
+.header {
+  width: 100%;
+  height: 64px;
+  background: #f2f2f2;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header-container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+.logo {
+  .logo-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .logo-link:hover {
+    transform: scale(1.05);
+  }
+
+  .brand {
+    font-weight: 600;
+    font-size: 18px;
+    color: #214e34;
+
+    span {
+      font-weight: 700;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+
+  a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #000;
+    position: relative;
+    padding: 6px 0;
+
+    &:hover {
+      color: #214e34;
+    }
+
+    &.active::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #214e34;
+    }
+  }
+
+  .nav-item {
+    position: relative;
+
+    &.dropdown {
+      cursor: pointer;
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 8px 0;
+        min-width: 170px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+
+        a {
+          display: block;
+          padding: 8px 16px;
+          font-size: 13px;
+          color: #333;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: #f5f5f5;
+            color: #214e34;
+          }
+        }
+      }
+
+      &:hover .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+
+  i {
+    font-size: 20px;
+    color: #000;
+    transition: color 0.2s ease;
+  }
+
+  &:hover i {
+    color: #214e34;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+}
