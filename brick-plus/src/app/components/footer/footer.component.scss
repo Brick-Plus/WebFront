@@ -9,22 +9,58 @@
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 50px;
+  align-items: start;
 }
 
+/* Brand */
 .footer-brand {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 40px;
 }
 
 .footer-logo {
-  height: auto;
+  width: 220px;
   object-fit: contain;
-
 }
 
+.social-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 30px;
+}
 
+.social {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 30px;
+
+  font-size: 13px;
+  text-decoration: none;
+  color: #000;
+  opacity: 0.85;
+
+  i {
+    font-size: 18px;
+  }
+
+  &:hover {
+    color: #214e34;
+    opacity: 1;
+  }
+}
+
+/* Columns */
 .footer-column {
   display: flex;
   flex-direction: column;
@@ -34,7 +70,6 @@
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #000;
   }
 
   a {
@@ -44,42 +79,73 @@
     opacity: 0.8;
 
     &:hover {
-      opacity: 1;
       color: #214e34;
+      opacity: 1;
     }
   }
 }
-.social {
+
+/* Google rating */
+.footer-rating {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  max-width: 200px;
+  text-align: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
   gap: 10px;
+}
 
+.rating-title {
   font-size: 13px;
-  text-decoration: none;
-  color: #000;
+  font-weight: 500;
+}
 
-  i {
-    font-size: 18px;
+.google-logo {
+  width: 70px;
+  margin: 0 auto;
+}
+
+.rating-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  .score {
+    font-size: 16px;
+    font-weight: 600;
   }
 
-  &:hover {
-    color: #214e34;
+  .stars {
+    font-size: 14px;
+    color: #f4c430;
   }
 }
 
+.rating-footer {
+  font-size: 11px;
+  color: #777;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
     row-gap: 40px;
   }
 
-  .footer-brand {
+  .footer-rating {
     grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
   }
 }
