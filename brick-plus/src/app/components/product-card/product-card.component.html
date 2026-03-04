@@ -1,0 +1,39 @@
+<div class="product-card">
+  <div class="card-header">
+    <span class="card-title">{{ product.title }}</span>
+    <div class="card-fav-wrapper" (click)="toggleFavorite()">
+      <img
+        class="card-fav-inactive"
+        src="/icons/status/inactive_favorite.svg"
+        alt="Favori"
+      />
+      <img
+        class="card-fav-active"
+        src="/icons/status/active_favorite.svg"
+        alt="Favori actif"
+      />
+    </div>
+  </div>
+
+  <div class="card-img-top">
+    <div class="card-img-wrapper">
+      <img
+        class="card-img"
+        [src]="product.image"
+        [alt]="product.title"
+      />
+      <span class="card-badge">{{ product.badge }}</span>
+    </div>
+  </div>
+
+  <div class="card-bottom">
+    <div class="card-desc">{{ product.description }}</div>
+    <div class="card-prices">
+      <span class="card-price-ht">{{ product.priceHT }}€</span>
+      <span class="card-price-ttc">{{ product.priceTTC }}€ TTC</span>
+    </div>
+    <button class="card-btn" (click)="addToCart()">
+      Ajouter au panier
+    </button>
+  </div>
+</div>

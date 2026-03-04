@@ -1,0 +1,272 @@
+.home {
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px 90px;
+  color: white;
+  background: url('/assets/images/lego.png') center / cover no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto 35px;
+    color: #f1f1f1;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+.btn {
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+
+  &.primary {
+    background: #214e34;
+    color: white;
+  }
+
+  &.secondary {
+    background: white;
+    color: #214e34;
+    border: 1px solid #214e34;
+  }
+}
+
+.produits {
+  padding: 50px 60px;
+  background: #fff;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .nav-arrows span {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+}
+
+.produits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.produit-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+
+  .image {
+    height: 160px;
+    background: url('/assets/images/lego.png') center / cover;
+  }
+
+  .infos {
+    padding: 12px;
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .desc {
+      font-size: 12px;
+      color: #666;
+      margin: 6px 0;
+    }
+
+    .price {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .add-cart {
+      width: 100%;
+      margin-top: 10px;
+      padding: 6px;
+      font-size: 12px;
+      border-radius: 4px;
+      border: 1px solid #214e34;
+      background: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.see-more {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 60px;
+}
+
+.sell {
+  background: #f3f3f3;
+  padding: 80px 20px;
+  margin: 80px 0;
+  text-align: center;
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 60px;
+  }
+}
+
+.sell-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sell-card {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 70px 25px 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    font-size: 16px;
+    color: #214e34;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .icon {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #214e34;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+}
+
+.avis {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f2f2f2;
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+}
+
+.avis-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  .arrow {
+    font-size: 22px;
+    cursor: pointer;
+  }
+}
+
+.avis-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.avis-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  width: 200px;
+  font-size: 12px;
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ddd;
+    margin: 0 auto 8px;
+  }
+
+  .name {
+    font-weight: 500;
+    display: block;
+  }
+
+  .stars {
+    font-size: 12px;
+    margin: 6px 0;
+  }
+
+  .comment {
+    color: #666;
+  }
+}
+
+@media (max-width: 1024px) {
+  .produits-grid,
+  .sell-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .produits-grid,
+  .sell-cards {
+    grid-template-columns: 1fr;
+  }
+}

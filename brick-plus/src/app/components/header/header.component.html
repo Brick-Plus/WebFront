@@ -1,33 +1,53 @@
 <header class="header">
-  <div class="logo">Brick+</div>
-  
-  <nav class="nav">
-    <div class="nav-item dropdown">
-    <span class="nav-link">Boutique</span>
+  <div class="header-container">
+  <div class="logo">
+  <a [routerLink]="['/home']" class="brand logo-link">
+    Brick<span>+</span>
+  </a>
+</div>
 
-    <div class="dropdown-menu">
-      <a routerLink="/set-complet" class="dropdown-link">Set complet</a>
-      <a routerLink="/produits" class="dropdown-link">Set neuf</a>
-      <a routerLink="/produits" class="dropdown-link">Set d'occasion</a>
-      <a routerLink="/produits" class="dropdown-link">Polybag</a>
+    <nav class="nav">
+      <a routerLink="/" class="active">Accueil</a>
+     <div class="nav-item dropdown">
+       <a routerLink="/boutique">Boutique</a>
+       <div class="dropdown-menu">
+         <a routerLink="/boutique/set-complet">Set complet</a>
+         <a routerLink="/boutique/figurine">Figurines</a>
+         <a routerLink="/boutique/vrac">Pieces et vrac</a>
+         <a routerLink="/boutique/theme">Thèmes</a>
+         <a routerLink="/boutique/nouveauté">Nouveautés</a>
+
+       </div>
+     </div>
+
+
+
+      <a routerLink="/vendre">Vendre mes Lego</a>
+      <a routerLink="/application">L’application</a>
+
+      <div class="nav-item dropdown">
+       <a routerLink="/about">À propos de Brick+</a>
+       <div class="dropdown-menu">
+         <a routerLink="/about/faq">FAQ/ Service Client</a>
+         <a routerLink="/about/mention">Mentions légales</a>
+         <a routerLink="/about/CGV">CGV (Conditions Générales de Vente)</a>
+         <a routerLink="/about/retour">Retours et Remboursements</a>
+         <a routerLink="/about/politique">Politique de confidentialité</a>
+       </div>
+     </div>
+</nav>
+
+    <div class="actions">
+      <button class="icon-btn">
+        <i class="material-icons">search</i>
+      </button>
+      <button class="icon-btn" [routerLink]="['/profile']">
+  <i class="material-icons">person</i>
+</button>
+
+      <button class="icon-btn">
+        <i class="material-icons">shopping_cart</i>
+      </button>
     </div>
-  </div>
-    <a routerLink="/themes" class="nav-link">Thèmes</a>
-    <a routerLink="/vracs" class="nav-link">Les vracs</a>
-    <a routerLink="/vendre" class="nav-link">Vendez les vôtres</a>
-    <a routerLink="/about" class="nav-link">A propos</a>
-  </nav>
-  
-  <div class="header-icons">
-    <button class="icon-btn">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-      </svg>
-    </button>
-    <button class="icon-btn profile-btn">
-      <div class="profile-icon"></div>
-    </button>
   </div>
 </header>
