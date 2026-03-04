@@ -28,8 +28,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets"
               }
-
             ],
             "styles": ["src/styles.scss"],
             "server": "src/main.server.ts",
