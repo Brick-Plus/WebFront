@@ -1,4 +1,4 @@
-@import '../../../styles.scss';
+@use '../../../styles.scss' as *;
 
 .catalogue-page {
   min-height: 100vh;
@@ -75,13 +75,9 @@
 // GRILLE PRODUITS
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   margin: 2rem 0;
-
-  @include large-screen {
-    grid-template-columns: repeat(4, 1fr);
-  }
 
   @include desktop {
     grid-template-columns: repeat(3, 1fr);
@@ -294,7 +290,7 @@
     gap: 0.375rem;
   }
 }
-  
+
 
 // PAGINATION
 .pagination {

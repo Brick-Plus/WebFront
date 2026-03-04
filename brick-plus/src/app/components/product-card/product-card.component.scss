@@ -13,7 +13,9 @@ $shadow-md: 0 4px 16px #0002;
 
 // Carte produit
 .product-card {
-	width: 345px;
+	width: 350px;
+	height: 100%;
+	box-sizing: border-box;
   padding: 20px;
   gap: 10px;
 	background: $text-light;
@@ -22,6 +24,7 @@ $shadow-md: 0 4px 16px #0002;
 	border: 2px solid #e0e0e0;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 	overflow: hidden;
 	cursor: pointer;
@@ -92,10 +95,11 @@ $shadow-md: 0 4px 16px #0002;
 .card-img-wrapper {
 	position: relative;
 	width: 100%;
-	aspect-ratio: 1 / 1;
+	height: 300px;
   border-radius: 10px;
 	background: #f0f0f0;
 	overflow: hidden;
+	flex-shrink: 0;
 }
 
 .card-img {
@@ -105,9 +109,8 @@ $shadow-md: 0 4px 16px #0002;
 	width: 100%;
 	height: 100%;
   border-radius: 10px;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	object-fit: cover;
+	object-position: center;
 	transition: transform 0.3s ease;
 
 	.product-card:hover & {

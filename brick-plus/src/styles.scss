@@ -1,3 +1,6 @@
+// Import typography variables
+@use 'styles/typography' as *;
+@use 'sass:color';
 
 $breakpoint-mobile: 480px;
 $breakpoint-tablet: 768px;
@@ -325,7 +328,7 @@ body {
     color: white;
 
     &:hover {
-      background: darken($primary-color, 10%);
+      background: color.adjust($primary-color, $lightness: -10%);
       transform: translateY(-2px);
     }
   }
@@ -335,7 +338,7 @@ body {
     color: white;
 
     &:hover {
-      background: lighten($secondary-color, 10%);
+      background: color.adjust($secondary-color, $lightness: 10%);
       transform: translateY(-2px);
     }
   }
@@ -429,6 +432,4 @@ img {
     display: none !important;
   }
 }
-// Import typography variables
-@use 'styles/typography' as *;
 

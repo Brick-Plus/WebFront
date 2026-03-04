@@ -4,12 +4,14 @@ import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../../components/header/header.component";
 import { SearchFilterBarComponent, SearchFilterEvent } from "../../components/search-filter-bar/search-filter-bar.component";
+import { FooterComponent } from "../../components/footer/footer.component";
+import { ProductCardComponent } from "../../components/product-card/product-card.component";
 import { Product, ProductResponse, ProduitsService } from './produits.service';
 
 @Component({
   selector: 'app-produits',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, SearchFilterBarComponent],
+  imports: [CommonModule, HeaderComponent, SearchFilterBarComponent, FooterComponent, ProductCardComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   templateUrl: './produits.component.html',
   styleUrl: './produits.component.scss',
@@ -18,16 +20,16 @@ export class Produits implements OnInit {
   // Données
   products: Product[] = [];
   totalProducts: number = 0;
-  
+
   // État de chargement
   isLoading: boolean = false;
   errorMessage: string = '';
-  
+
   // Pagination
   currentPage: number = 1;
   totalPages: number = 1;
   pageSize: number = 12;
-  
+
   // Filtres
   filters = {
     search: '',
@@ -84,7 +86,10 @@ export class Produits implements OnInit {
   /**
    * Ajouter au panier
    */
-  addToCart(product: Product): void {
+  addToCart(productId: number): void {
+    const product = this.products.find(p => p.id === productId);
+    if (!product) return;
+
     this.produitsService.addToCart(product.id).subscribe({
       next: () => {
         alert(`${product.title} ajouté au panier !`);
@@ -98,9 +103,10 @@ export class Produits implements OnInit {
   /**
    * Toggle favori
    */
-  toggleFavorite(product: Product, event: Event): void {
-    event.stopPropagation();
-    
+  toggleFavorite(productId: number): void {
+    const product = this.products.find(p => p.id === productId);
+    if (!product) return;
+
     this.produitsService.toggleFavorite(product.id).subscribe({
       next: () => {
         product.isFavorite = !product.isFavorite;
@@ -124,11 +130,11 @@ export class Produits implements OnInit {
     const maxPages = 5;
     let start = Math.max(1, this.currentPage - 2);
     let end = Math.min(this.totalPages, start + maxPages - 1);
-    
+
     if (end - start < maxPages - 1) {
       start = Math.max(1, end - maxPages + 1);
     }
-    
+
     for (let i = start; i <= end; i++) {
       pages.push(i);
     }
