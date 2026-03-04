@@ -1,0 +1,213 @@
+/* Centrage du header de la bulle */
+.frame-12_141-2172 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body {
+    height: 100vh;
+    overflow-y: hidden;
+  padding-top: 70px;
+  overflow-x: hidden;
+  background: #f5f5f5;
+}
+/* Bloc de bienvenue à gauche - version screen */
+ .frame-17_141-2217 {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 48px;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.welcome-badge {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+.welcome-btn {
+  background: #214e34;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 8px 32px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+.welcome-title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 18px;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+.welcome-desc {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+/* Centrage du contenu principal sous le header */
+.login-main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+  gap: 64px;
+}
+/* Mise en page générale */
+.page-de-connexion_107-1593 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.frame-14_141-2174 {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 56px 48px;
+  width: 520px;
+  min-width: 520px;
+  max-width: 520px;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+}
+.text-se-connecter_141-1400 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+.text-acc-dez---votre-espace-persnnel_141-1401 {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+/* Champs email et mot de passe */
+.frame-6_141-2150, .frame-7_141-2155 {
+  margin-bottom: 18px;
+}
+.text-email_141-1686, .text-mot-de-passe_141-1685 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #214e34;
+  margin-bottom: 6px;
+  display: block;
+}
+.imput_162-1946, .imput_162-1963 {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #f9f9f9;
+  margin-bottom: 8px;
+}
+
+/* Boutons */
+.boutton_141-1002 {
+  width: 100%;
+  background: #214e34;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+.boutton_196-964 {
+  width: 100%;
+  background: #fff;
+  color: #214e34;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 0;
+  border: 1px solid #214e34;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+/* En-tête */
+.header_107-1596 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  z-index: 1000;
+  overflow: visible;
+}
+.logo-brickplus-2_107-1597 {
+  height: 33px;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page-de-connexion_107-1593 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+  }
+  .frame-17_141-2217, .frame-14_141-2174 {
+    margin: 0 0 24px 0;
+    min-width: 90vw;
+    max-width: 95vw;
+  }
+
+  /* Masquer le texte de gauche sur mobile */
+  .login-main-content {
+    justify-content: center !important;
+    gap: 0 !important;
+  }
+  .frame-17_141-2217 {
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .frame-14_141-2174 {
+    width: 95vw;
+    min-width: 0;
+    max-width: 100vw;
+    height: auto;
+    margin: 0;
+  }
+}
