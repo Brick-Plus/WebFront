@@ -1,0 +1,14 @@
+<div class="fav-wrapper" (click)="toggleFavorite()">
+  <img
+    *ngIf="!isFavorite"
+    class="fav-inactive"
+    src="/icons/status/inactive_favorite.svg"
+    alt="Favori"
+  />
+  <img
+    *ngIf="isFavorite"
+    class="fav-active"
+    src="/icons/status/active_favorite.svg"
+    alt="Favori actif"
+  />
+</div>

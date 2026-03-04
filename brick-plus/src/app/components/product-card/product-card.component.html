@@ -1,18 +1,10 @@
 <div class="product-card">
   <div class="card-header">
     <span class="card-title">{{ product.title }}</span>
-    <div class="card-fav-wrapper" (click)="toggleFavorite()">
-      <img
-        class="card-fav-inactive"
-        src="/icons/status/inactive_favorite.svg"
-        alt="Favori"
-      />
-      <img
-        class="card-fav-active"
-        src="/icons/status/active_favorite.svg"
-        alt="Favori actif"
-      />
-    </div>
+    <app-favorite
+      [isFavorite]="product.isFavorite"
+      (favorite)="onFavoriteChange($event)"
+    ></app-favorite>
   </div>
 
   <div class="card-img-top">

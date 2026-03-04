@@ -1,0 +1,12 @@
+.fav-wrapper {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.fav-inactive,
+.fav-active {
+  width: 24px;
+  height: 24px;
+}
