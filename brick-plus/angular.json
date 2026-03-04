@@ -3,7 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "15f9d8b5-b1ec-44d2-a329-c68f153696d9"
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -55,7 +55,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
