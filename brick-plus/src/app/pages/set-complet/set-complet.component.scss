@@ -1,23 +1,36 @@
 @use 'sass:color';
 @use '../../../styles.scss' as *;
 
+main {
+  margin-top: 63px;
+}
+
 .set-page {
   background: $background;
   font-family: 'Poppins', sans-serif;
 }
 
+.container {
+  max-width: 1450px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ---------------- HERO ---------------- */
 .set-hero {
   background: $secondary-color;
   color: white;
-  padding: $spacing-xl;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
-  align-items: center;
+  padding: $spacing-xl 20px;
 
-  @include tablet-down {
-    grid-template-columns: 1fr;
-    padding: $spacing-lg $spacing-md;
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+
+    @include tablet-down {
+      grid-template-columns: 1fr;
+    }
   }
 
   h1 {
@@ -38,20 +51,27 @@
   }
 }
 
+/* ---------------- SECTIONS ---------------- */
 .set-section {
-  padding: $spacing-xl;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: start;
+  padding: $spacing-xl 20px;
 
-  @include tablet-down {
-    padding: $spacing-lg $spacing-md;
-    gap: 20px;
+  &:nth-child(odd) {
+    background: #fff;
   }
 
-  @include mobile {
-    gap: 15px;
+  &:nth-child(even) {
+    background: $background;
+  }
+}
+
+.set-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: center;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
   }
 
   h2 {
@@ -67,112 +87,35 @@
   }
 }
 
-.cards {
-  display: flex;
-  gap: 20px;
-
-  @include mobile {
-    gap: 10px;
-  }
-}
-
-.produit-card {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  width: 180px;
-  position: relative;
+.set-section.occasion .set-inner {
+  grid-template-columns: 1fr 2fr;
 
   @include tablet-down {
-    width: 140px;
-  }
-
-  @include mobile {
-    width: 120px;
-  }
-
-  &.large {
-    width: 100%;
-    max-width: 280px;
-
-    @include tablet-down {
-      max-width: 220px;
-    }
-
-    @include mobile {
-      max-width: 180px;
-    }
-  }
-
-  .badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: $primary-color;
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    z-index: 10;
-  }
-
-  .image {
-    height: 280px;
-    overflow: hidden;
-
-    @include tablet-down {
-      height: 200px;
-    }
-
-    @include mobile {
-      height: 160px;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .infos {
-    padding: 10px;
-    font-size: 12px;
-
-    @include mobile {
-      padding: 8px;
-      font-size: 10px;
-    }
-
-    .title-row {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 500;
-    }
-
-    p {
-      color: #666;
-      margin: 4px 0;
-    }
-
-    .price {
-      font-weight: 500;
-      color: $secondary-color;
-    }
+    grid-template-columns: 1fr;
   }
 }
 
+/* ---------------- CARDS ---------------- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* ---------------- BOUTON ---------------- */
 .btn.primary {
   background: $secondary-color;
   color: white;
-  padding: 10px 18px;
+  padding: 12px 22px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
 
   &:hover {
-    background: color.adjust($secondary-color, $lightness: 10%);
+    background: color.adjust($secondary-color, $lightness: -5%);
+    transform: translateY(-1px);
   }
 }
