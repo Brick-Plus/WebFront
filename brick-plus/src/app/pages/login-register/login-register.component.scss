@@ -1,0 +1,155 @@
+/* Header */
+
+.login-header {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+
+  svg {
+    color: #000;
+  }
+
+  &:hover {
+    background: black;
+
+    svg {
+      color: white;
+    }
+  }
+}
+
+.login-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Layout */
+
+.login-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 70px;
+  width: 100%;
+}
+
+/* Card */
+
+.frame-14_141-2174 {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 32px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input */
+
+.frame-6_141-2150 {
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.imput_162-1946 {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #f9f9f9;
+  outline: none;
+}
+
+/* Supprime validation rouge navigateur */
+
+input:invalid {
+  box-shadow: none;
+}
+
+input:focus:invalid {
+  box-shadow: none;
+}
+
+/* Buttons */
+
+.boutton_141-1002 {
+  width: 100%;
+  background: #214e34;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.boutton_196-964 {
+  width: 100%;
+  background: #fff;
+  color: #214e34;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border: 1px solid #214e34;
+  cursor: pointer;
+}
+
+/* Divider */
+
+.login-divider {
+  width: 100%;
+  text-align: center;
+  margin: 18px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Error */
+
+.error-message {
+  font-size: 13px;
+  color: #d32f2f;
+  margin-top: 6px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+  .frame-14_141-2174 {
+    min-width: 90vw;
+    max-width: 95vw;
+  }
+
+  .login-header {
+    width: 90vw;
+  }
+
+}
