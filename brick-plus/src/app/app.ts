@@ -4,21 +4,22 @@ import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { interval } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App implements OnInit {
+
   protected readonly title = signal('brick-plus');
 
   private swUpdate = inject(SwUpdate);
   private appRef = inject(ApplicationRef);
 
   ngOnInit(): void {
-    // Vérifier que le Service Worker est activé
+    // Vérifie si le Service Worker est activé (production uniquement)
     if (this.swUpdate.isEnabled) {
       this.checkForUpdates();
       this.handleVersionUpdates();
@@ -26,34 +27,39 @@ export class App implements OnInit {
   }
 
   private checkForUpdates(): void {
-    // Vérifier les mises à jour toutes les 6 heures
+
+    // Vérifie les mises à jour toutes les 6 heures
     interval(6 * 60 * 60 * 1000).subscribe(() => {
       this.swUpdate.checkForUpdate().then(() => {
         console.log('Vérification des mises à jour effectuée');
       });
     });
 
-    // Vérifier quand l'app devient stable (au premier chargement)
+    // Vérifie une fois que l'application est stable au démarrage
     this.appRef.isStable.pipe(
-      filter(isStable => isStable)
+      filter((isStable: boolean) => isStable)
     ).subscribe(() => {
       this.swUpdate.checkForUpdate();
     });
   }
 
   private handleVersionUpdates(): void {
-    // Écouter les nouvelles versions disponibles
+
+    // Nouvelle version disponible
     this.swUpdate.versionUpdates.pipe(
       filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
-    ).subscribe(event => {
+    ).subscribe((event: VersionReadyEvent) => {
+
       if (confirm('Nouvelle version disponible. Voulez-vous recharger l\'application ?')) {
         window.location.reload();
       }
     });
 
-    // Gérer les erreurs de Service Worker non récupérables
-    this.swUpdate.unrecoverable.subscribe(event => {
-      console.error('Erreur Service Worker non récupérable:', event.reason);
+    // Erreur non récupérable
+    this.swUpdate.unrecoverable.subscribe((event: { reason: string }) => {
+
+      console.error('Erreur Service Worker non récupérable :', event.reason);
+
       if (confirm('Une erreur est survenue. Voulez-vous recharger l\'application ?')) {
         window.location.reload();
       }
