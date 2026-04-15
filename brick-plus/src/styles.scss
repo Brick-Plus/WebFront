@@ -1,5 +1,5 @@
 // Import typography variables
-@use 'styles/typography' as *;
+@use './styles/typography' as *;
 @use 'sass:color';
 
 $breakpoint-mobile: 480px;

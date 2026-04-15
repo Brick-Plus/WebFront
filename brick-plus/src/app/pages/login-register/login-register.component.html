@@ -1,22 +1,22 @@
-<div class="login-main-content">
+<div class="login">
 
   <!-- Header -->
-  <div class="login-header">
+  <div class="login__header">
 
-    <button class="back-btn" (click)="goBack()">
+    <button class="login__back-btn" (click)="goBack()">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
     </button>
 
-    <h1 class="login-title">
+    <h1 class="login__title">
       Se connecter
     </h1>
 
   </div>
 
   <!-- Card -->
-  <div class="frame-14_141-2174">
+  <div class="login__card">
 
     <form
       [formGroup]="loginForm"
@@ -28,23 +28,28 @@
       <!-- Google -->
       <button
         type="button"
-        class="boutton_196-964"
+        class="login__google-btn"
         (click)="continueWithGoogle()"
       >
+        <img
+          src="/icons/google.svg"
+          alt="Google"
+          class="login__google-icon"
+        />
         Continuer avec Google
       </button>
 
       <!-- Divider -->
-      <div class="login-divider">
+      <div class="login__divider">
         OU
       </div>
 
       <!-- Email -->
-      <div class="frame-6_141-2150">
+      <div class="login__input-group">
 
         <input
           type="email"
-          class="imput_162-1946"
+          class="login__input"
           placeholder="Saisissez votre e-mail"
           formControlName="email"
           autocomplete="email"
@@ -52,7 +57,7 @@
         />
 
         @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
-          <div class="error-message">
+          <div class="login__error">
             Veuillez entrer un email valide
           </div>
         }
@@ -62,13 +67,19 @@
       <!-- Submit -->
       <button
         type="submit"
-        class="boutton_141-1002"
+        class="login__submit-btn"
       >
         Continuer avec l'e-mail
       </button>
 
+      <!-- Privacy -->
+      <p class="login__privacy">
+        En continuant, vous reconnaissez la
+        <a href="/privacy-policy" class="login__privacy-link">
+          Politique de confidentialité
+        </a>
+        de Brick+.
+      </p>
     </form>
-
   </div>
-
 </div>
