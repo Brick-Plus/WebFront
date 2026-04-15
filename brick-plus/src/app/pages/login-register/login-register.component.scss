@@ -58,9 +58,19 @@
     margin-bottom: 24px;
   }
 
+  &__header-content {
+    text-align: center;
+  }
+
   &__title {
     @include h2;
     color: #1a1a1a;
+    margin: 0 0 8px 0;
+  }
+
+  &__subtitle {
+    @include text-small;
+    color: #666;
     margin: 0;
   }
 
@@ -243,6 +253,43 @@
     margin-top: 6px;
   }
 
+  &__error-list {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: #fde8e8;
+    border-radius: 6px;
+    border: 1px solid #f5a5a5;
+  }
+
+  &__error-title {
+    @include text-smallest;
+
+    color: #d32f2f;
+    margin: 0 0 6px 0;
+    font-weight: 600;
+  }
+
+  &__error-criteria {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__error-item {
+    @include text-smallest;
+
+    color: #d32f2f;
+    margin: 4px 0;
+    padding-left: 16px;
+    position: relative;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+    }
+  }
+
   // SIGN UP
   &__signup {
     @include text-small;
@@ -257,6 +304,30 @@
     color: #214e34;
     text-decoration: underline;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  // TOGGLE MODE
+  &__toggle {
+    @include text-small;
+
+    color: #777;
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.4;
+  }
+
+  &__toggle-link {
+    background: none;
+    border: none;
+    color: #214e34;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
 
     &:hover {
       opacity: 0.7;
