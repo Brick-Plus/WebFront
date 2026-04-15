@@ -1,0 +1,158 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+}
+
+.product-main {
+  display: grid;
+  margin-block: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  border: 2px solid #0b5e2b;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gallery {
+  display: flex;
+  gap: 1rem;
+
+  .thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .thumb {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      &.active { border-color: #000; }
+    }
+  }
+
+  .main-image {
+    flex: 1;
+    img { width: 100%; border-radius: 8px; }
+    .warning { font-size: 0.75rem; color: #888; margin-top: 0.5rem; }
+  }
+}
+
+.product-info {
+  h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; }
+
+  .tags { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+  .tag { padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
+  .tag.green { background: #4CAF50; color: white; }
+
+  .label { font-weight: 600; margin: 1rem 0 0.4rem; }
+
+  .state-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    button {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      &.active { background: #e0e0e0; font-weight: 600; }
+    }
+  }
+
+  .prices {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    .price-original { text-decoration: line-through; color: #888; }
+    .price-discount { color: red; font-size: 0.85rem; }
+  }
+
+  .cart-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+
+    button {
+      padding: 0.4rem 0.8rem;
+      background: #f5f5f5;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    span { padding: 0.4rem 1rem; }
+  }
+
+  .add-to-cart {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .shipping { font-size: 0.85rem; color: #555; margin-top: 1rem; }
+}
+
+// Onglets
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 1.5rem;
+
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #888;
+    &.active {
+      color: #000;
+      border-bottom: 2px solid #000;
+      font-weight: 600;
+    }
+  }
+}
+
+// Produits recommandés
+.recommended {
+  margin-top: 2rem;
+
+  h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
+
+  .recommended-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+
+    app-product-card {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}

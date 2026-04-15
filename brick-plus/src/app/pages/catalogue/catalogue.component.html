@@ -1,0 +1,58 @@
+<div class="catalogue-page">
+  <app-header></app-header>
+
+  <div class="catalogue-container">
+    <nav class="breadcrumb">
+      <span>Accueil</span> / <span>Fil d'ariane</span>
+    </nav>
+
+    <h1 class="catalogue-title">CATALOGUE</h1>
+
+    <app-search-filter-bar
+      searchPlaceholder="Rechercher"
+      (allFiltersChange)="onFiltersChange($event)"
+    ></app-search-filter-bar>
+
+    <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+      <p>Chargement des produits...</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage" class="products-grid">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+        (favoriteToggled)="toggleFavorite($event)"
+        (addedToCart)="addToCart($event)"
+        (cardClicked)="navigateToProduct($event)"
+      ></app-product-card>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage && products.length === 0" class="no-results">
+      <p>Aucun produit trouvé</p>
+    </div>
+
+    <div *ngIf="!isLoading && products.length > 0" class="pagination">
+      <button class="pagination-btn" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+        Précédent
+      </button>
+      <div class="pagination-numbers">
+        <button
+          *ngFor="let page of getPageNumbers()"
+          class="page-number"
+          [class.active]="currentPage === page"
+          (click)="changePage(page)"
+        >{{ page }}</button>
+      </div>
+      <button class="pagination-btn" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+        Suivant
+      </button>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
