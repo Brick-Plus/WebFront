@@ -4,11 +4,12 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Product, ProduitsService } from '../produits/produits.service';
+import { AvisComponent } from "../../components/avis/avis.component";
 
 @Component({
   selector: 'app-set-complet',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule, ProductCardComponent],
+  imports: [HeaderComponent, FooterComponent, CommonModule, ProductCardComponent, AvisComponent],
   templateUrl: './set-complet.component.html',
   styleUrl: './set-complet.component.scss'
 })
