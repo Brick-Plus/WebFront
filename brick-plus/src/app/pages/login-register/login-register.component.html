@@ -66,7 +66,7 @@
             inputmode="email"
           />
 
-          @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+          @if (loginForm.controls.email.touched && loginForm.controls.email.value?.trim() && loginForm.controls.email.invalid) {
             <div class="login__error">
               @if (loginForm.controls.email.errors?.['required']) {
                 Veuillez entrer une adresse e-mail
@@ -172,7 +172,7 @@
             inputmode="email"
           />
 
-          @if (registerForm.controls.email.touched && registerForm.controls.email.invalid) {
+          @if (registerForm.controls.email.touched && registerForm.controls.email.value?.trim() && registerForm.controls.email.invalid) {
             <div class="login__error">
               @if (registerForm.controls.email.errors?.['required']) {
                 Veuillez entrer une adresse e-mail
@@ -216,15 +216,25 @@
             </button>
           </div>
 
-          @if (registerForm.controls.password.touched && registerForm.controls.password.invalid) {
+          @if (registerForm.controls.password.touched && registerForm.controls.password.value?.trim() && registerForm.controls.password.invalid) {
             <div class="login__error-list">
               <p class="login__error-title">Le mot de passe doit contenir :</p>
               <ul class="login__error-criteria">
-                <li class="login__error-item">Au moins 10 caractères</li>
-                <li class="login__error-item">Au moins une lettre minuscule (a-z)</li>
-                <li class="login__error-item">Au moins une lettre majuscule (A-Z)</li>
-                <li class="login__error-item">Au moins un chiffre (0-9)</li>
-                <li class="login__error-item">Au moins un caractère spécial (!@#$%^&*)</li>
+                @if (registerForm.controls.password.errors?.['minlength']) {
+                  <li class="login__error-item">Au moins 10 caractères</li>
+                }
+                @if (registerForm.controls.password.errors?.['lowercase']) {
+                  <li class="login__error-item">Au moins une lettre minuscule (a-z)</li>
+                }
+                @if (registerForm.controls.password.errors?.['uppercase']) {
+                  <li class="login__error-item">Au moins une lettre majuscule (A-Z)</li>
+                }
+                @if (registerForm.controls.password.errors?.['number']) {
+                  <li class="login__error-item">Au moins un chiffre (0-9)</li>
+                }
+                @if (registerForm.controls.password.errors?.['special']) {
+                  <li class="login__error-item">Au moins un caractère spécial (!@#$%^&*)</li>
+                }
               </ul>
             </div>
           }
