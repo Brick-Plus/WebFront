@@ -64,9 +64,11 @@
             formControlName="email"
             autocomplete="email"
             inputmode="email"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
           />
 
-          @if (loginForm.controls.email.touched && loginForm.controls.email.value?.trim() && loginForm.controls.email.invalid) {
+          @if (loginForm.controls.email.touched && !emailFocused && loginForm.controls.email.value?.trim() && loginForm.controls.email.invalid) {
             <div class="login__error">
               @if (loginForm.controls.email.errors?.['required']) {
                 Veuillez entrer une adresse e-mail
@@ -170,9 +172,11 @@
             formControlName="email"
             autocomplete="email"
             inputmode="email"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
           />
 
-          @if (registerForm.controls.email.touched && registerForm.controls.email.value?.trim() && registerForm.controls.email.invalid) {
+          @if (registerForm.controls.email.touched && !emailFocused && registerForm.controls.email.value?.trim() && registerForm.controls.email.invalid) {
             <div class="login__error">
               @if (registerForm.controls.email.errors?.['required']) {
                 Veuillez entrer une adresse e-mail
@@ -194,6 +198,8 @@
               placeholder="Saisissez votre mot de passe"
               formControlName="password"
               autocomplete="new-password"
+              (focus)="passwordFocused = true"
+              (blur)="passwordFocused = false"
             />
 
             <button
@@ -216,7 +222,7 @@
             </button>
           </div>
 
-          @if (registerForm.controls.password.touched && registerForm.controls.password.value?.trim() && registerForm.controls.password.invalid) {
+          @if (registerForm.controls.password.touched && !passwordFocused && registerForm.controls.password.value?.trim() && registerForm.controls.password.invalid) {
             <div class="login__error-list">
               <p class="login__error-title">Le mot de passe doit contenir :</p>
               <ul class="login__error-criteria">

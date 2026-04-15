@@ -24,6 +24,9 @@ export class LoginRegisterComponent {
   isLoginMode = true;
   showPassword = false;
   showPasswordConfirm = false;
+  emailFocused = false;
+  passwordFocused = false;
+  passwordConfirmFocused = false;
 
   loginForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, this.emailValidator()]],
