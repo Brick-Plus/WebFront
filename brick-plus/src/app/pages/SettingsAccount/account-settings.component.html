@@ -1,0 +1,24 @@
+<div class="settings-page">
+  <nav class="breadcrumb">Accueil / Fil d'ariane</nav>
+  <h2>Paramètres de compte</h2>
+
+  <div class="settings-card">
+    <h3>Modifiez les informations ?</h3>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <input type="text" placeholder="Prénom" [(ngModel)]="form.prenom" name="prenom" />
+        <input type="text" placeholder="Nom" [(ngModel)]="form.nom" name="nom" />
+      </div>
+      <input type="text" placeholder="Nom du profil (Affiché)" [(ngModel)]="form.nomProfil" name="nomProfil" />
+      <input type="tel" placeholder="Téléphone" [(ngModel)]="form.telephone" name="telephone" />
+      <input type="email" placeholder="Adresse mail" [(ngModel)]="form.email" name="email" />
+      <input type="email" placeholder="Adresse mail de récupération" [(ngModel)]="form.emailRecup" name="emailRecup" />
+      <input type="password" placeholder="Mot de passe actuel" [(ngModel)]="form.mdpActuel" name="mdpActuel" />
+      <input type="password" placeholder="Nouveau mot de passe" [(ngModel)]="form.mdpNouveau" name="mdpNouveau" />
+      <input type="password" placeholder="Confirmer le nouveau mot de passe" [(ngModel)]="form.mdpConfirm" name="mdpConfirm" />
+
+      <button type="submit" class="btn-save">Enregistré les modifications</button>
+    </form>
+  </div>
+</div>

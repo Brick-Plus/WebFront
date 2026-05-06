@@ -1,0 +1,70 @@
+<div class="payment-page">
+  <nav class="breadcrumb">Accueil / Fil d'ariane</nav>
+  <h2>Moyen de paiement</h2>
+
+  <p class="empty-msg">Aucun moyen de paiement n'a étais sauvegarder.</p>
+
+  <div class="payment-card">
+    <div class="payment-card-header" (click)="toggleForm()">
+      <h3>Ajouter un moyen de paiement</h3>
+      <svg [class.open]="formOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </div>
+
+    <div *ngIf="formOpen" class="payment-form">
+      <p class="form-label">Choisissez votre moyens de paiement.</p>
+      <hr/>
+
+      <div class="payment-options">
+        <label class="payment-option" [class.selected]="selectedMethod === 'carte'" (click)="selectedMethod = 'carte'">
+          <input type="radio" name="method" value="carte" [checked]="selectedMethod === 'carte'" />
+          <span>Carte</span>
+          <div class="card-logos">
+            <img src="images/mastercard.jpg" alt="Mastercard" height="22" style="width: auto; object-fit: contain;"/>
+            <img src="images/Visa.jpg" alt="Visa" height="16" style="width: auto; object-fit: contain;"/>
+            <span class="more">+5</span>
+          </div>
+        </label>
+
+        <div class="card-fields" *ngIf="selectedMethod === 'carte'">
+          <input type="text" placeholder="Numéro de carte" [(ngModel)]="card.numero" name="numero" />
+          <div class="form-row">
+            <input type="text" placeholder="MM/AA" [(ngModel)]="card.expiration" name="expiration" />
+            <input type="text" placeholder="CVC" [(ngModel)]="card.cvc" name="cvc" />
+          </div>
+        </div>
+
+        <label class="payment-option" [class.selected]="selectedMethod === 'paypal'" (click)="selectedMethod = 'paypal'">
+          <input type="radio" name="method" value="paypal" [checked]="selectedMethod === 'paypal'" />
+          <span>PayPal</span>
+          <img src="images/paypal_PNG7.png" alt="PayPal" height="20" style="width: auto; max-width: 50px; object-fit: contain;"/>
+        </label>
+
+        <label class="payment-option" [class.selected]="selectedMethod === 'virement'" (click)="selectedMethod = 'virement'">
+          <input type="radio" name="method" value="virement" [checked]="selectedMethod === 'virement'" />
+          <span>Virement bancaire</span>
+        </label>
+      </div>
+
+      <div class="form-row mt">
+        <input type="text" placeholder="Prénom" [(ngModel)]="billing.prenom" name="prenom" />
+        <input type="text" placeholder="Nom" [(ngModel)]="billing.nom" name="nom" />
+      </div>
+      <input type="text" placeholder="Nom de l'entreprise (facultatif)" [(ngModel)]="billing.entreprise" name="entreprise" />
+      <div class="select-row">
+        <input type="text" placeholder="Pays/ régions" [(ngModel)]="billing.pays" name="pays" />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+
+      <button class="btn-save" (click)="onSubmit()">Enregistrer les modifications</button>
+
+      <div class="form-row">
+        <button class="btn-outline">Modifier</button>
+        <button class="btn-outline">Ajouter un nouveau moyen de paiement</button>
+      </div>
+    </div>
+  </div>
+</div>

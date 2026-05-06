@@ -8,6 +8,9 @@ import { AvisComponent } from './components/avis/avis.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { AccountSettingsComponent } from './pages/SettingsAccount/account-settings.component';
+import { AddressesComponent } from './pages/Adresses/addresses.component';
+import { PaymentComponent } from './pages/moyen de paiement/payment.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginRegisterComponent },
@@ -19,5 +22,17 @@ export const routes: Routes = [
   { path: 'avis', component: AvisComponent},
   { path: 'catalogue', component: CatalogueComponent},
   { path: 'produitCard', component: ProductCardComponent },
-  { path: 'product/:id', component: ProductDetailComponent }
+  { path: 'product/:id', component: ProductDetailComponent },
+  {
+  path: 'profile',
+  component: ProfileComponent,
+  children: [
+    { path: '', redirectTo: 'parametres', pathMatch: 'full' },
+    { path: 'parametres', component: AccountSettingsComponent },
+    { path: 'adresses', component: AddressesComponent },
+    { path: 'paiement', component: PaymentComponent },
+    //{ path: 'commandes', component: CommandesComponent },
+    //{ path: 'favoris', component: FavorisComponent },
+  ]
+}
 ];

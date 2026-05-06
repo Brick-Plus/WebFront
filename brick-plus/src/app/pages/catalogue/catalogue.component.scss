@@ -23,9 +23,10 @@
 }
 
 .catalogue-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0;
 }
 
 .products-grid {
@@ -109,4 +110,36 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+
+  svg {
+    color: #000;
+  }
+
+  &:hover {
+    background: black;
+    svg {
+      color: #ffffff;
+    }
+  }
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
 }
