@@ -2,26 +2,45 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 0.75rem;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
   }
 }
 
-.search-box {
+/* 3 blocs égaux */
+.search-box,
+.filter-action {
   flex: 1;
-  min-width: 250px;
+  min-width: 0;
+}
+
+/* ===================== */
+/* HAUTEUR UNIFORME */
+/* ===================== */
+
+.search-toggle,
+.filter-select,
+.search-input {
+  height: 48px;
+  box-sizing: border-box;
+}
+
+/* ===================== */
+/* SEARCH INPUT */
+/* ===================== */
+
+.search-box {
   position: relative;
   display: flex;
   align-items: center;
+}
 
-  @media (max-width: 768px) {
-    width: 100%;
-    min-width: auto;
-  }
+.search-box.expanded {
+  width: 100%;
+  flex: 1;
 }
 
 .search-icon {
@@ -33,16 +52,15 @@
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 3rem;
+  padding: 0 3rem 0 3rem;
   border: 2px solid #000;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
-  transition: all 0.2s;
-  background-color: white;
-  caret-width: 3px;
+  background: #fff;
   caret-color: #000;
+  transition: 0.2s;
 
   &:hover {
     background-color: #f5f5f5;
@@ -50,8 +68,6 @@
 
   &:focus {
     outline: none;
-    background-color: white;
-    box-shadow: none;
   }
 
   &::placeholder {
@@ -60,25 +76,35 @@
   }
 }
 
+/* bouton fermeture */
+.close-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* ===================== */
+/* SELECTS */
+/* ===================== */
+
 .filter-select {
-  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  width: 100%;
+  padding: 0 2.5rem 0 1rem; /* plus de padding vertical */
   border: 2px solid #000;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
-  background-color: white;
+  background: #fff;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: 0.2s;
+
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
-  min-width: 150px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
 
   &:hover {
     background-color: #f5f5f5;
@@ -86,11 +112,26 @@
 
   &:focus {
     outline: none;
-    background-color: white;
   }
+}
 
-  option {
-    padding: 0.5rem;
-    cursor: pointer;
+/* ===================== */
+/* SEARCH TOGGLE BUTTON */
+/* ===================== */
+
+.search-toggle {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #000;
+  border-radius: 12px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #f5f5f5;
   }
 }

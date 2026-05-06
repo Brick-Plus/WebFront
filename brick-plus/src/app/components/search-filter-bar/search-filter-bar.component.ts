@@ -28,13 +28,15 @@ export interface SearchFilterEvent {
 })
 export class SearchFilterBarComponent {
   @Input() searchPlaceholder: string = 'Rechercher';
+
   @Input() sortOptions: SortOption[] = [
     { value: '', label: 'Trier par' },
     { value: 'price-asc', label: 'Prix croissant' },
     { value: 'price-desc', label: 'Prix décroissant' },
     { value: 'name', label: 'Nom' },
-    { value: 'date', label: 'Date d\'ajout' }
+    { value: 'date', label: "Date d'ajout" }
   ];
+
   @Input() filterOptions: FilterOption[] = [
     { value: '', label: 'Filtrer' },
     { value: 'new', label: 'Nouveautés' },
@@ -43,7 +45,6 @@ export class SearchFilterBarComponent {
     { value: 'stock', label: 'En stock' }
   ];
 
-  // Événements émis vers le parent
   @Output() searchChange = new EventEmitter<string>();
   @Output() sortChange = new EventEmitter<string>();
   @Output() filterChange = new EventEmitter<string>();
@@ -53,21 +54,32 @@ export class SearchFilterBarComponent {
   sortBy: string = '';
   filterBy: string = '';
 
-  // Subject pour debounce la recherche
+  isSearchOpen: boolean = false;
+
   private searchSubject = new Subject<string>();
 
   constructor() {
-    // Configuration du debounce pour la recherche (300ms)
     this.searchSubject
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
+      .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(searchTerm => {
         this.searchTerm = searchTerm;
         this.searchChange.emit(searchTerm);
         this.emitAllFilters();
       });
+  }
+
+  toggleSearch(): void {
+    this.isSearchOpen = !this.isSearchOpen;
+
+    if (this.isSearchOpen) {
+      setTimeout(() => {
+        document.querySelector<HTMLInputElement>('.search-input')?.focus();
+      });
+    }
+  }
+
+  closeSearch(): void {
+    this.isSearchOpen = false;
   }
 
   onSearchInput(value: string): void {
@@ -84,9 +96,6 @@ export class SearchFilterBarComponent {
     this.emitAllFilters();
   }
 
-  /**
-   * Émet tous les filtres en une seule fois
-   */
   private emitAllFilters(): void {
     this.allFiltersChange.emit({
       searchTerm: this.searchTerm,
@@ -95,9 +104,6 @@ export class SearchFilterBarComponent {
     });
   }
 
-  /**
-   * Réinitialise tous les filtres
-   */
   resetFilters(): void {
     this.searchTerm = '';
     this.sortBy = '';
