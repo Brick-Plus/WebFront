@@ -2,7 +2,7 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  align-items: center;
+  align-items: stretch;
 
   @media (max-width: 768px) {
     flex-wrap: nowrap;
@@ -15,6 +15,17 @@
 .filter-action {
   flex: 1;
   min-width: 0;
+}
+
+/* ===================== */
+/* HAUTEUR UNIFORME */
+/* ===================== */
+
+.search-toggle,
+.filter-select,
+.search-input {
+  height: 48px;
+  box-sizing: border-box;
 }
 
 /* ===================== */
@@ -41,7 +52,7 @@
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 3rem 0.75rem 3rem;
+  padding: 0 3rem 0 3rem;
   border: 2px solid #000;
   border-radius: 12px;
   font-size: 1rem;
@@ -81,7 +92,7 @@
 
 .filter-select {
   width: 100%;
-  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  padding: 0 2.5rem 0 1rem; /* plus de padding vertical */
   border: 2px solid #000;
   border-radius: 12px;
   font-size: 1rem;
