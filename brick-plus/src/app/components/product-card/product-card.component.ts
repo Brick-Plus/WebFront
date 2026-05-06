@@ -24,6 +24,7 @@ export class ProductCardComponent {
   @Input() product!: Product;
   @Output() favoriteToggled = new EventEmitter<number>();
   @Output() addedToCart = new EventEmitter<number>();
+  @Output() cardClicked = new EventEmitter<number>();
 
   toggleFavorite(): void {
     this.favoriteToggled.emit(this.product.id);
@@ -35,5 +36,9 @@ export class ProductCardComponent {
 
   onFavoriteChange(isFavorite: boolean): void {
     this.product.isFavorite = isFavorite;
+  }
+
+  onCardClick(): void {
+    this.cardClicked.emit(this.product.id);
   }
 }

@@ -13,183 +13,211 @@ $shadow-md: 0 4px 16px #0002;
 
 // Carte produit
 .product-card {
-	width: 437px;
-	height: 100%;
-	box-sizing: border-box;
+  width: 100%;
+  max-width: 440px;
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
   padding: 20px;
   gap: 10px;
-	background: $text-light;
-	border-radius: 10px;
-	box-shadow: $shadow-sm;
-	border: 2px solid #e0e0e0;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-	overflow: hidden;
-	cursor: pointer;
+  background: $text-light;
+  border-radius: 10px;
+  box-shadow: $shadow-sm;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
 
-	&:hover {
-		box-shadow: $shadow-md;
-		border-color: $primary-color;
-	}
+  @media (max-width: 480px) {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $primary-color;
+  }
 }
 
 .card-header {
-	display: flex;
-	align-items: center;
-	gap: 25px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  @media (max-width: 480px) {
+    gap: 12px;
+  }
 }
 
 .card-title {
-	@include boldtext-large;
-	color: $text-dark;
-	margin: 0;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	flex: 1;
-	min-width: 0;
+  @include boldtext-large;
+  color: $text-dark;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
 }
 
 .card-fav-wrapper {
-	position: relative;
-	width: 24px;
-	height: 24px;
-	cursor: pointer;
-	user-select: none;
-	flex-shrink: 0;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 .card-fav-inactive,
 .card-fav-active {
-	width: 24px;
-	height: 24px;
-	position: absolute;
-	top: 0;
-	left: 0;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .card-fav-inactive {
-	display: block;
+  display: block;
 }
 
 .card-fav-active {
-	display: none;
+  display: none;
 }
 
 .card-fav-wrapper:hover .card-fav-inactive {
-	display: none;
+  display: none;
 }
 
 .card-fav-wrapper:hover .card-fav-active {
-	display: block;
+  display: block;
 }
 
 // Image
 .card-img-top {
-	padding: 0;
-	overflow: hidden;
+  padding: 0;
+  overflow: hidden;
 }
 
 .card-img-wrapper {
-	position: relative;
-	width: 100%;
-	height: 300px;
+  position: relative;
+  width: 100%;
+  height: 300px;
   border-radius: 10px;
-	background: #f0f0f0;
-	overflow: hidden;
-	flex-shrink: 0;
+  background: #f0f0f0;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  @media (max-width: 900px) {
+    height: 220px;
+  }
+
+  @media (max-width: 480px) {
+    height: 200px;
+  }
 }
 
 .card-img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
   border-radius: 10px;
-	object-fit: cover;
-	object-position: center;
-	transition: transform 0.3s ease;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
 
-	.product-card:hover & {
-		transform: scale(1.05);
-	}
+  .product-card:hover & {
+    transform: scale(1.05);
+  }
 }
 
 .card-badge {
-	position: absolute;
-	top: 8px;
-	left: 8px;
-	background: $primary-color;
-	color: $text-light;
-	padding: 6px 12px;
-	border-radius: 7.5px;
-	@include label-smallest;
-	text-transform: uppercase;
-	z-index: 10;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: $primary-color;
+  color: $text-light;
+  padding: 6px 12px;
+  border-radius: 7.5px;
+  @include label-smallest;
+  text-transform: uppercase;
+  z-index: 10;
   box-shadow: $shadow-sm;
 }
 
 // Contenu bas
 .card-bottom {
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1;
-	justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
   gap: 15px;
+
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
 }
 
 .card-desc {
-	@include text-medium;
-	color: $text-dark;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+  @include text-medium;
+  color: $text-dark;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .card-prices {
-	display: flex;
-	align-items: center;
-	@include boldtext-medium;
-	color: $text-dark;
+  display: flex;
+  align-items: center;
+  @include boldtext-medium;
+  color: $text-dark;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .card-price-ht {
   @include h3;
-	color: $text-gray;
-	text-decoration: line-through;
+  color: $text-gray;
+  text-decoration: line-through;
   margin-right: 10px;
 }
 
 .card-price-ttc {
-	@include h3;
-	color: $primary-color;
+  @include h3;
+  color: $primary-color;
 }
 
 // Bouton
 .card-btn {
-	background: $text-dark;
-	color: $text-light;
-	border: none;
-	padding: 10px 12px;
-	border-radius: 8px;
+  background: $text-dark;
+  color: $text-light;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
   @include label-large;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	transition: background 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s ease;
+  width: 100%;
+  touch-action: manipulation; // meilleure réactivité tactile
 
-	&:hover {
-		background: $primary-color;
-	}
+  &:hover {
+    background: $primary-color;
+  }
 
-	&:active {
-		background: $primary-active-color;
-	}
+  &:active {
+    background: $primary-active-color;
+  }
 }

@@ -1,74 +1,332 @@
-<div class="login-main-content">
+<div class="login">
 
-  <!-- Header -->
-  <div class="login-header">
-
-    <button class="back-btn" (click)="goBack()">
+  <!-- Back Button (Top Left) -->
+  <button class="login__back-btn" routerLink="/">
+    <span class="login__back-icon">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
-    </button>
+    </span>
+    <span class="login__back-text">Retour</span>
+  </button>
 
-    <h1 class="login-title">
-      Se connecter
-    </h1>
-
+  <!-- Header -->
+  <div class="login__header">
+    @if (isLoginMode) {
+      <div class="login__header-content">
+        <h1 class="login__title">Se connecter</h1>
+        <p class="login__subtitle">Accédez à votre espace personnel</p>
+      </div>
+    } @else {
+      <div class="login__header-content">
+        <h1 class="login__title">Créer un compte</h1>
+        <p class="login__subtitle">Rejoignez la communauté Brick+</p>
+      </div>
+    }
   </div>
 
   <!-- Card -->
-  <div class="frame-14_141-2174">
+  <div class="login__card">
 
-    <form
-      [formGroup]="loginForm"
-      (ngSubmit)="continueWithEmail()"
-      novalidate
-      ngNativeValidate="false"
-    >
-
-      <!-- Google -->
-      <button
-        type="button"
-        class="boutton_196-964"
-        (click)="continueWithGoogle()"
+    <!-- LOGIN FORM -->
+    @if (isLoginMode) {
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="submit()"
+        novalidate
+        ngNativeValidate="false"
       >
-        Continuer avec Google
-      </button>
 
-      <!-- Divider -->
-      <div class="login-divider">
-        OU
-      </div>
+        <!-- Google -->
+        <button
+          type="button"
+          class="login__google-btn"
+          (click)="continueWithGoogle()"
+        >
+          <img
+            src="/icons/google.svg"
+            alt="Google"
+            class="login__google-icon"
+          />
+          Continuer avec Google
+        </button>
 
-      <!-- Email -->
-      <div class="frame-6_141-2150">
+        <!-- Divider -->
+        <div class="login__divider">
+          OU
+        </div>
 
-        <input
-          type="email"
-          class="imput_162-1946"
-          placeholder="Saisissez votre e-mail"
-          formControlName="email"
-          autocomplete="email"
-          inputmode="email"
-        />
+        <!-- Email -->
+        <div class="login__input-group">
 
-        @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
-          <div class="error-message">
-            Veuillez entrer un email valide
+          <input
+            type="email"
+            class="login__input"
+            placeholder="Saisissez votre e-mail"
+            formControlName="email"
+            autocomplete="email"
+            inputmode="email"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
+          />
+
+          @if (loginForm.controls.email.touched && !emailFocused && loginForm.controls.email.value.trim() && loginForm.controls.email.invalid) {
+            <div class="login__error">
+              @if (loginForm.controls.email.errors?.['required']) {
+                Veuillez entrer une adresse e-mail
+              } @else {
+                Veuillez entrer une adresse e-mail valide
+              }
+            </div>
+          }
+
+        </div>
+
+        <!-- Password -->
+        <div class="login__input-group">
+
+          <div class="login__password-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="login__input"
+              placeholder="Saisissez votre mot de passe"
+              formControlName="password"
+              autocomplete="new-password"
+            />
+
+            <button
+              type="button"
+              class="login__password-toggle"
+              (click)="togglePasswordVisibility()"
+              tabindex="-1"
+            >
+              @if (showPassword) {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              } @else {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              }
+            </button>
           </div>
-        }
 
-      </div>
+        </div>
 
-      <!-- Submit -->
-      <button
-        type="submit"
-        class="boutton_141-1002"
+        <!-- Forgot Password Link -->
+        <button
+          type="button"
+          class="login__forgot-password-btn"
+          (click)="forgotPassword()"
+        >
+          Mot de passe oublié ?
+        </button>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="login__submit-btn"
+        >
+          Se connecter
+        </button>
+
+      </form>
+    }
+
+    <!-- REGISTER FORM -->
+    @if (!isLoginMode) {
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="submit()"
+        novalidate
+        ngNativeValidate="false"
       >
-        Continuer avec l'e-mail
-      </button>
 
-    </form>
+        <!-- Google -->
+        <button
+          type="button"
+          class="login__google-btn"
+          (click)="continueWithGoogle()"
+        >
+          <img
+            src="/icons/google.svg"
+            alt="Google"
+            class="login__google-icon"
+          />
+          Continuer avec Google
+        </button>
+
+        <!-- Divider -->
+        <div class="login__divider">
+          OU
+        </div>
+
+        <!-- Email -->
+        <div class="login__input-group">
+
+          <input
+            type="email"
+            class="login__input"
+            placeholder="Saisissez votre e-mail"
+            formControlName="email"
+            autocomplete="email"
+            inputmode="email"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
+          />
+
+          @if (registerForm.controls.email.touched && !emailFocused && registerForm.controls.email.value.trim() && registerForm.controls.email.invalid) {
+            <div class="login__error">
+              @if (registerForm.controls.email.errors?.['required']) {
+                Veuillez entrer une adresse e-mail
+              } @else {
+                Veuillez entrer une adresse e-mail valide
+              }
+            </div>
+          }
+
+        </div>
+
+        <!-- Password -->
+        <div class="login__input-group">
+
+          <div class="login__password-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="login__input"
+              placeholder="Saisissez votre mot de passe"
+              formControlName="password"
+              autocomplete="new-password"
+              (focus)="passwordFocused = true"
+              (blur)="passwordFocused = false"
+            />
+
+            <button
+              type="button"
+              class="login__password-toggle"
+              (click)="togglePasswordVisibility()"
+              tabindex="-1"
+            >
+              @if (showPassword) {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              } @else {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              }
+            </button>
+          </div>
+
+          @if (registerForm.controls.password.touched && !passwordFocused && registerForm.controls.password.value.trim() && registerForm.controls.password.invalid) {
+            <div class="login__error-list">
+              <p class="login__error-title">Le mot de passe doit contenir :</p>
+              <ul class="login__error-criteria">
+                @if (registerForm.controls.password.errors?.['minlength']) {
+                  <li class="login__error-item">Au moins 10 caractères</li>
+                }
+                @if (registerForm.controls.password.errors?.['lowercase']) {
+                  <li class="login__error-item">Au moins une lettre minuscule (a-z)</li>
+                }
+                @if (registerForm.controls.password.errors?.['uppercase']) {
+                  <li class="login__error-item">Au moins une lettre majuscule (A-Z)</li>
+                }
+                @if (registerForm.controls.password.errors?.['number']) {
+                  <li class="login__error-item">Au moins un chiffre (0-9)</li>
+                }
+                @if (registerForm.controls.password.errors?.['special']) {
+                  <li class="login__error-item">Au moins un caractère spécial (!@#$%^&*)</li>
+                }
+              </ul>
+            </div>
+          }
+
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="login__input-group">
+
+          <div class="login__password-wrapper">
+            <input
+              [type]="showPasswordConfirm ? 'text' : 'password'"
+              class="login__input"
+              placeholder="Confirmez votre mot de passe"
+              formControlName="passwordConfirm"
+              autocomplete="new-password"
+            />
+
+            <button
+              type="button"
+              class="login__password-toggle"
+              (click)="togglePasswordConfirmVisibility()"
+              tabindex="-1"
+            >
+              @if (showPasswordConfirm) {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              } @else {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              }
+            </button>
+          </div>
+
+          @if (registerForm.controls.password.valid && registerForm.controls.passwordConfirm.touched && registerForm.controls.passwordConfirm.value && registerForm.controls.passwordConfirm.invalid) {
+            @if (registerForm.controls.passwordConfirm.errors?.['mismatch']) {
+              <div class="login__error">
+                Les mots de passe ne correspondent pas
+              </div>
+            }
+          }
+
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="login__submit-btn"
+        >
+          Créer un compte
+        </button>
+
+      </form>
+    }
 
   </div>
+
+  <!-- Toggle Link (Outside Card) -->
+  @if (isLoginMode) {
+    <p class="login__toggle">
+      Pas encore de compte ?
+      <button
+        type="button"
+        class="login__toggle-link"
+        (click)="toggleMode()"
+      >
+        Créer un compte
+      </button>
+    </p>
+  } @else {
+    <p class="login__toggle">
+      Déjà un compte ?
+      <button
+        type="button"
+        class="login__toggle-link"
+        (click)="toggleMode()"
+      >
+        Connexion
+      </button>
+    </p>
+  }
 
 </div>

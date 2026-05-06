@@ -6,42 +6,36 @@
   font-size: 30px;
   line-height: 36px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin h2 {
   font-size: 24px;
   line-height: 32px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin h3 {
   font-size: 20px;
   line-height: 28px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin h4 {
   font-size: 18px;
   line-height: 28px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin h5 {
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin h6 {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 // Text Styles
@@ -49,105 +43,90 @@
   font-size: 20px;
   line-height: 28px;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin text-medium {
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin text-small {
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin text-smaller {
   font-size: 14px;
   line-height: 16px;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin text-smallest {
   font-size: 12px;
   line-height: 13px;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
 }
 
-// BoldText Styles
+// Bold
 @mixin boldtext-large {
   font-size: 20px;
   line-height: 18px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin boldtext-medium {
   font-size: 18px;
   line-height: 24px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin boldtext-small {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin boldtext-smaller {
   font-size: 12px;
   line-height: 16px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin boldtext-smallest {
   font-size: 12px;
   line-height: 13px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
 }
 
-// Label Styles
+// Labels
 @mixin label-large {
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin label-medium {
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin label-small {
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin label-smaller {
   font-size: 14px;
   line-height: 16px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
 }
 
 @mixin label-smallest {
   font-size: 12px;
   line-height: 13px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
 }
