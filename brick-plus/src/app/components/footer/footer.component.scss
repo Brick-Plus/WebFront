@@ -1,15 +1,20 @@
 .footer {
   background: #ffffff;
   padding: 60px 24px;
-  font-family: 'Poppins', sans-serif;
+
+  @media (max-width: 480px) {
+    padding: 40px 16px;
+  }
 }
 
 .footer-container {
   max-width: 1400px;
   margin: 0 auto;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
 
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 50px;
   align-items: start;
 }
@@ -19,7 +24,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-top: 40px;
 }
 
 .footer-logo {
@@ -30,7 +34,6 @@
 .social-title {
   font-size: 13px;
   font-weight: 500;
-  margin-left: 30px;
 }
 
 .social {
@@ -43,7 +46,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: 30px;
 
   font-size: 13px;
   text-decoration: none;
@@ -135,17 +137,71 @@
 /* Responsive */
 @media (max-width: 900px) {
   .footer-container {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
   }
 
   .footer-rating {
     grid-column: span 2;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 600px) {
+  .footer {
+    padding: 40px 16px;
+  }
+
   .footer-container {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Brand */
+  .footer-brand {
+    padding-top: 0;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    width: 160px;
+  }
+
+  .social-title {
+    margin-left: 0;
+  }
+
+  .social {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .social-link {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  /* Colonnes → style liste */
+  .footer-column {
+    align-items: flex-start;
+
+    h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    a {
+      font-size: 14px;
+      padding: 4px 0;
+    }
+  }
+
+  /* Rating → carte pleine largeur */
+  .footer-rating {
+    max-width: 100%;
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
   }
 }

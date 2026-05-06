@@ -1,51 +1,112 @@
 <header class="header">
   <div class="header-container">
-  <div class="logo">
-  <a [routerLink]="['/']" class="brand logo-link">
-    Brick<span>+</span>
-  </a>
-</div>
 
+    <!-- Logo -->
+    <div class="logo">
+      <a [routerLink]="['/home']" class="brand logo-link">
+        Brick<span>+</span>
+      </a>
+    </div>
+
+    <!-- NAV DESKTOP -->
     <nav class="nav">
       <a routerLink="/" class="active">Accueil</a>
-     <div class="nav-item dropdown">
-       <a routerLink="/boutique">Boutique</a>
-       <div class="dropdown-menu">
-        <a routerLink="/catalogue">Catalogue</a>
-         <a routerLink="/complete-set">Set complet</a>
-         <a routerLink="/boutique/figurine">Figurines</a>
-         <a routerLink="/boutique/vrac">Pieces et vrac</a>
-         <a routerLink="/boutique/theme">Thèmes</a>
-         <a routerLink="/boutique/nouveauté">Nouveautés</a>
-       </div>
-     </div>
+
+      <div class="nav-item dropdown">
+        <a routerLink="/boutique">Boutique</a>
+        <div class="dropdown-menu">
+          <a routerLink="/catalogue">Catalogue</a>
+          <a routerLink="/complete-set">Set complet</a>
+          <a routerLink="/boutique/figurine">Figurines</a>
+          <a routerLink="/boutique/vrac">Pieces et vrac</a>
+          <a routerLink="/boutique/theme">Thèmes</a>
+          <a routerLink="/boutique/nouveauté">Nouveautés</a>
+        </div>
+      </div>
 
       <a routerLink="/vendre">Vendre mes Lego</a>
       <a routerLink="/application">L’application</a>
 
       <div class="nav-item dropdown">
-       <a routerLink="/about">À propos de Brick+</a>
-       <div class="dropdown-menu">
-         <a routerLink="/about/faq">FAQ/ Service Client</a>
-         <a routerLink="/about/mention">Mentions légales</a>
-         <a routerLink="/about/CGV">CGV (Conditions Générales de Vente)</a>
-         <a routerLink="/about/retour">Retours et Remboursements</a>
-         <a routerLink="/about/politique">Politique de confidentialité</a>
-       </div>
-     </div>
-</nav>
+        <a routerLink="/about">À propos</a>
+        <div class="dropdown-menu">
+          <a routerLink="/about/faq">FAQ/ Service Client</a>
+          <a routerLink="/about/mention">Mentions légales</a>
+          <a routerLink="/about/CGV">CGV</a>
+          <a routerLink="/about/retour">Retours et Remboursements</a>
+          <a routerLink="/about/politique">Politique de confidentialité</a>
+        </div>
+      </div>
+    </nav>
 
+    <!-- ACTIONS -->
     <div class="actions">
-      <button class="icon-btn">
+
+      <button class="icon-btn desktop-only">
         <i class="material-icons">search</i>
       </button>
-      <button class="icon-btn" [routerLink]="['/profile']">
-  <i class="material-icons">person</i>
-</button>
 
-      <button class="icon-btn">
+      <button class="icon-btn desktop-only" [routerLink]="['/profile']">
+        <i class="material-icons">person</i>
+      </button>
+
+      <button class="icon-btn desktop-only">
         <i class="material-icons">shopping_cart</i>
       </button>
+
+      <button class="icon-btn menu-btn" (click)="toggleMenu()">
+        <i class="material-icons">menu</i>
+      </button>
+
     </div>
   </div>
 </header>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" *ngIf="isMenuOpen">
+
+  <!-- SECTION 1 -->
+  <div class="mobile-section mobile-nav">
+
+    <a routerLink="/" (click)="closeMenu()">Accueil</a>
+
+    <a routerLink="/vendre" (click)="closeMenu()">Vendre mes Lego</a>
+    <a routerLink="/application" (click)="closeMenu()">L’application</a>
+
+    <a routerLink="/about" (click)="closeMenu()">À propos</a>
+
+  </div>
+
+  <!-- SECTION 2 : BOUTIQUE -->
+  <div class="mobile-section mobile-shop">
+
+    <a routerLink="/catalogue" (click)="closeMenu()">Catalogue</a>
+
+    <a routerLink="/complete-set" (click)="closeMenu()">Set complet</a>
+
+    <a routerLink="/boutique/figurine" (click)="closeMenu()">Figurines</a>
+
+    <a routerLink="/boutique/vrac" (click)="closeMenu()">Pieces et vrac</a>
+
+    <a routerLink="/boutique/theme" (click)="closeMenu()">Thèmes</a>
+
+    <a routerLink="/boutique/nouveauté" (click)="closeMenu()">Nouveautés</a>
+
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="mobile-section mobile-actions">
+
+    <a routerLink="/profile" (click)="closeMenu()">
+      <i class="material-icons">person</i>
+      Mon compte
+    </a>
+
+    <a (click)="closeMenu()">
+      <i class="material-icons">shopping_cart</i>
+      Panier
+    </a>
+
+  </div>
+
+</div>
