@@ -5,6 +5,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Product, ProduitsService } from '../produits/produits.service';
 import { AvisComponent } from "../../components/avis/avis.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,9 @@ import { AvisComponent } from "../../components/avis/avis.component";
 export class HomeComponent implements OnInit {
   newProducts: Product[] = [];
 
-  constructor(private produitsService: ProduitsService) {}
+  constructor(private produitsService: ProduitsService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.produitsService.getProducts(0, 3, {}).subscribe(response => {
@@ -39,4 +42,9 @@ export class HomeComponent implements OnInit {
       alert(`${product.title} ajouté au panier !`);
     });
   }
+
+  navigateToProduct(productId: number): void {
+    this.router.navigate(['/product', productId]);
+  }
+
 }

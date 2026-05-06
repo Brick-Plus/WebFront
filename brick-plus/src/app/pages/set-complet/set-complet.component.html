@@ -40,6 +40,7 @@
             [product]="newProduct"
             (favoriteToggled)="toggleFavorite($event, 'new')"
             (addedToCart)="addToCart($event, 'new')"
+            (cardClicked)="navigateToProduct($event)"
           ></app-product-card>
         </div>
       </div>
@@ -56,6 +57,7 @@
             [product]="usedProduct"
             (favoriteToggled)="toggleFavorite($event, 'used')"
             (addedToCart)="addToCart($event, 'used')"
+            (cardClicked)="navigateToProduct($event)"
           ></app-product-card>
         </div>
         <div class="text">
@@ -95,6 +97,7 @@
             [product]="polybagProduct"
             (favoriteToggled)="toggleFavorite($event, 'polybag')"
             (addedToCart)="addToCart($event, 'polybag')"
+            (cardClicked)="navigateToProduct($event)"
           ></app-product-card>
         </div>
       </div>
