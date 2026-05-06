@@ -65,4 +65,13 @@ export class ProductDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/catalogue']);
   }
+
+  navigateToProduct(productId: number): void {
+  this.router.navigate(['/product', productId]);
+}
+
+onQuantityInput(event: Event): void {
+  const value = parseInt((event.target as HTMLInputElement).value, 10);
+  this.quantity = isNaN(value) || value < 1 ? 1 : value;
+}
 }
