@@ -99,7 +99,7 @@ export class CatalogueComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   navigateToProduct(productId: number): void {

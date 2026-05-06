@@ -10,10 +10,9 @@ import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginRegisterComponent },
   { path: 'register', component: LoginRegisterComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'products', component: Produits },
   { path: 'complete-set', component: SetCompletComponent },
