@@ -14,11 +14,10 @@
   max-width: 1400px;
   height: 100%;
   margin: 0 auto;
-
   padding: 0 24px;
 
   @media (max-width: 480px) {
-    padding: 0 16px; // ← aligné avec ton catalogue
+    padding: 0 16px;
   }
 
   display: grid;
@@ -26,6 +25,7 @@
   align-items: center;
 }
 
+/* LOGO */
 .logo {
   .logo-link {
     text-decoration: none;
@@ -50,12 +50,12 @@
   }
 }
 
+/* NAV DESKTOP */
 .nav {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 28px;
-  position: relative;
 
   a {
     text-decoration: none;
@@ -103,10 +103,9 @@
           padding: 8px 16px;
           font-size: 13px;
           color: #333;
-          white-space: nowrap;
 
           &:hover {
-            background-color: #f5f5f5;
+            background: #f5f5f5;
             color: #214e34;
           }
         }
@@ -119,10 +118,12 @@
   }
 }
 
+/* ACTIONS */
 .actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: flex-end;
+  gap: 16px;
 }
 
 .icon-btn {
@@ -142,6 +143,11 @@
   }
 }
 
+/* VISIBILITÉ */
+.desktop-only {
+  display: flex;
+}
+
 .menu-btn {
   display: none;
 }
@@ -151,26 +157,63 @@
     display: none;
   }
 
+  .desktop-only {
+    display: none;
+  }
+
   .menu-btn {
     display: block;
   }
 }
 
+/* MENU MOBILE */
 .mobile-menu {
   position: fixed;
   top: 64px;
   left: 0;
   width: 100%;
+  height: calc(100vh - 64px);
+
   background: white;
   border-top: 1px solid #eee;
-  padding: 16px;
+
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  z-index: 999;
+  gap: 16px;
 
-  a {
-    font-size: 14px;
-    padding: 10px 0;
-  }
+  padding: 16px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+/* SECTIONS */
+.mobile-section {
+  background: #eaeaea;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* LIENS MOBILE */
+.mobile-section a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 15px;
+  color: #000;
+  text-decoration: none;
+
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mobile-section a:last-child {
+  border-bottom: none;
+}
+
+.mobile-section a i {
+  font-size: 20px;
+  color: #214e34;
 }
