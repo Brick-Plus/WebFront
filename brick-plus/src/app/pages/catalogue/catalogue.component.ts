@@ -1,16 +1,23 @@
 import { Component, computed, signal } from '@angular/core';
 
-type Category = 'sets' | 'figurines' | 'accessoires';
-type SortOrder = 'newest' | 'oldest' | 'title-asc' | 'title-desc';
+type SortCriterion = 'popularity' | 'releaseDate' | 'averageReviews' | 'price';
+type FilterCriterion = 'legoType' | 'setCondition' | 'range' | 'subTheme' | 'figureCondition';
 
 interface PlaceholderProduct {
   id: number;
   title: string;
   description: string;
-  category: Category;
+  popularity?: number;
+  releaseDate?: string;
+  averageReviews?: number;
+  price?: number;
+  legoType?: string;
+  setCondition?: string;
+  range?: string;
+  subTheme?: string;
+  figureCondition?: string;
+  available?: boolean;
 }
-
-const categories: Category[] = ['sets', 'figurines', 'accessoires'];
 
 @Component({
   selector: 'app-catalogue',
@@ -20,44 +27,72 @@ const categories: Category[] = ['sets', 'figurines', 'accessoires'];
 })
 export class CatalogueComponent {
   protected readonly searchTerm = signal('');
-  protected readonly selectedCategory = signal<Category | 'all'>('all');
-  protected readonly sortOrder = signal<SortOrder>('newest');
+  protected readonly sortCriterion = signal<SortCriterion | ''>('');
+  protected readonly selectedFilters = signal<Record<FilterCriterion, string>>({
+    legoType: '',
+    setCondition: '',
+    range: '',
+    subTheme: '',
+    figureCondition: ''
+  });
+  protected readonly availableOnly = signal(false);
   protected readonly currentPage = signal(1);
   protected readonly pageSize = 8;
   protected readonly favoriteIds = signal<number[]>([]);
   protected readonly cartIds = signal<number[]>([]);
 
+  protected readonly sortCriteria: { key: SortCriterion; label: string }[] = [
+    { key: 'popularity', label: 'Popularité' },
+    { key: 'releaseDate', label: 'Date de sortie' },
+    { key: 'averageReviews', label: 'Avis moyens' },
+    { key: 'price', label: 'Prix' }
+  ];
+
+  protected readonly filterCriteria: { key: FilterCriterion; label: string }[] = [
+    { key: 'legoType', label: 'Type de LEGO' },
+    { key: 'setCondition', label: 'État du set' },
+    { key: 'range', label: 'Gamme' },
+    { key: 'subTheme', label: 'Sous-thème' },
+    { key: 'figureCondition', label: 'État de la figurine' }
+  ];
+
   protected readonly products: PlaceholderProduct[] = Array.from({ length: 40 }, (_, index) => ({
     id: index + 1,
     title: 'Titre',
-    description: 'Description',
-    category: categories[index % categories.length]
+    description: 'Description'
   }));
 
   protected readonly filteredProducts = computed(() => {
     const query = this.searchTerm().trim().toLocaleLowerCase();
-    const category = this.selectedCategory();
+    const sortCriterion = this.sortCriterion();
     const results = this.products.filter((product) => {
       const matchesSearch =
-        !query ||
-        `${product.title} ${product.description} article provisoire ${product.id}`
-          .toLocaleLowerCase()
-          .includes(query);
-      const matchesCategory = category === 'all' || product.category === category;
-      return matchesSearch && matchesCategory;
+        !query || `${product.title} ${product.description}`.toLocaleLowerCase().includes(query);
+      const matchesFilters = this.filterCriteria.every(({ key }) => {
+        const selectedValue = this.selectedFilters()[key];
+        return !selectedValue || product[key] === selectedValue;
+      });
+      const matchesAvailability = !this.availableOnly() || product.available === true;
+      return matchesSearch && matchesFilters && matchesAvailability;
     });
 
+    if (!sortCriterion) {
+      return results;
+    }
+
     return results.sort((first, second) => {
-      switch (this.sortOrder()) {
-        case 'oldest':
-          return first.id - second.id;
-        case 'title-asc':
-          return first.title.localeCompare(second.title) || first.id - second.id;
-        case 'title-desc':
-          return second.title.localeCompare(first.title) || first.id - second.id;
-        default:
-          return second.id - first.id;
+      const firstValue = first[sortCriterion];
+      const secondValue = second[sortCriterion];
+      if (firstValue === undefined) {
+        return secondValue === undefined ? 0 : 1;
       }
+      if (secondValue === undefined) {
+        return -1;
+      }
+      if (typeof firstValue === 'number' && typeof secondValue === 'number') {
+        return firstValue - secondValue;
+      }
+      return String(firstValue).localeCompare(String(secondValue));
     });
   });
 
@@ -82,33 +117,47 @@ export class CatalogueComponent {
     }
   }
 
-  protected updateCategory(event: Event): void {
+  protected updateSort(event: Event): void {
     const target = event.target;
     if (target instanceof HTMLSelectElement) {
-      const selectedCategory =
-        target.value === 'all'
-          ? 'all'
-          : categories.find((category) => category === target.value);
-      if (selectedCategory) {
-        this.selectedCategory.set(selectedCategory);
+      const criterion = this.sortCriteria.find((option) => option.key === target.value);
+      if (criterion) {
+        this.sortCriterion.set(criterion.key);
         this.currentPage.set(1);
       }
     }
   }
 
-  protected updateSort(event: Event): void {
+  protected filterOptions(criterion: FilterCriterion): string[] {
+    return Array.from(
+      new Set(
+        this.products
+          .map((product) => product[criterion])
+          .filter((value): value is string => typeof value === 'string' && value.length > 0)
+      )
+    );
+  }
+
+  protected updateFilter(criterion: FilterCriterion, event: Event): void {
     const target = event.target;
     if (target instanceof HTMLSelectElement) {
-      const sortOrder = target.value;
-      if (
-        sortOrder === 'newest' ||
-        sortOrder === 'oldest' ||
-        sortOrder === 'title-asc' ||
-        sortOrder === 'title-desc'
-      ) {
-        this.sortOrder.set(sortOrder);
+      const value = target.value;
+      if (!value || this.filterOptions(criterion).includes(value)) {
+        this.selectedFilters.update((filters) => ({ ...filters, [criterion]: value }));
         this.currentPage.set(1);
       }
+    }
+  }
+
+  protected hasAvailabilityData(): boolean {
+    return this.products.some((product) => product.available !== undefined);
+  }
+
+  protected updateAvailability(event: Event): void {
+    const target = event.target;
+    if (target instanceof HTMLInputElement && this.hasAvailabilityData()) {
+      this.availableOnly.set(target.checked);
+      this.currentPage.set(1);
     }
   }
 

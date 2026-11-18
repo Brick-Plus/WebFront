@@ -24,21 +24,52 @@
 
       <label class="select-control">
         <select aria-label="Trier par" (change)="updateSort($event)">
-          <option value="newest">Trier par</option>
-          <option value="oldest">Plus anciens</option>
-          <option value="title-asc">Titre A-Z</option>
-          <option value="title-desc">Titre Z-A</option>
+          <option value="">Trier par</option>
+          @for (criterion of sortCriteria; track criterion.key) {
+            <option [value]="criterion.key">
+              {{ criterion.label }}
+            </option>
+          }
         </select>
       </label>
 
-      <label class="select-control">
-        <select aria-label="Filtrer par catégorie" (change)="updateCategory($event)">
-          <option value="all">Filtrer</option>
-          <option value="sets">Sets</option>
-          <option value="figurines">Figurines</option>
-          <option value="accessoires">Accessoires</option>
-        </select>
-      </label>
+      <details class="select-control filter-control">
+        <summary>Filtrer</summary>
+        <div class="filter-panel">
+          @for (criterion of filterCriteria; track criterion.key) {
+            <label class="filter-field">
+              <span>{{ criterion.label }}</span>
+              <select
+                [attr.aria-label]="criterion.label"
+                [value]="selectedFilters()[criterion.key]"
+                (change)="updateFilter(criterion.key, $event)"
+              >
+                @if (filterOptions(criterion.key).length === 0) {
+                  <option value="">Valeurs non renseignées</option>
+                } @else {
+                  <option value="">Toutes</option>
+                  @for (value of filterOptions(criterion.key); track value) {
+                    <option [value]="value">{{ value }}</option>
+                  }
+                }
+              </select>
+            </label>
+          }
+
+          <label class="availability-filter">
+            <input
+              type="checkbox"
+              [checked]="availableOnly()"
+              [disabled]="!hasAvailabilityData()"
+              (change)="updateAvailability($event)"
+            />
+            <span>N’afficher que les produits actuellement disponibles</span>
+          </label>
+          <p class="filter-note">
+            Les placeholders ne peuvent pas être filtrés tant que leurs informations ne sont pas renseignées.
+          </p>
+        </div>
+      </details>
     </div>
 
     <div class="product-grid" aria-live="polite">
@@ -63,10 +94,7 @@
           </div>
 
           <div class="product-image">
-            <img src="/images/catalogue-placeholder.svg" alt="Visuel provisoire" />
-            @if (product.id <= 8) {
-              <span class="new-badge">Nouveauté</span>
-            }
+            <img src="/assets/images/catalogue-placeholder.svg" alt="Visuel provisoire" />
           </div>
 
           <p class="product-description">{{ product.description }}</p>
