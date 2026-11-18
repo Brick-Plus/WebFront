@@ -1,0 +1,145 @@
+<section class="catalogue-page">
+  <div class="catalogue-content">
+    <nav class="breadcrumbs" aria-label="Catalogue">
+      <a href="/catalogue">Accueil</a>
+      <span aria-hidden="true">/</span>
+      <span>Catalogue</span>
+    </nav>
+
+    <h1>CATALOGUE</h1>
+
+    <div class="catalogue-controls">
+      <label class="search-control">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.6"></circle>
+          <path d="m16 16 4.2 4.2"></path>
+        </svg>
+        <input
+          type="search"
+          placeholder="Rechercher"
+          aria-label="Rechercher un article"
+          (input)="updateSearch($event)"
+        />
+      </label>
+
+      <label class="select-control">
+        <select aria-label="Trier par" (change)="updateSort($event)">
+          <option value="">Trier par</option>
+          @for (criterion of sortCriteria; track criterion.key) {
+            <option [value]="criterion.key">
+              {{ criterion.label }}
+            </option>
+          }
+        </select>
+      </label>
+
+      <details class="select-control filter-control">
+        <summary>Filtrer</summary>
+        <div class="filter-panel">
+          @for (criterion of filterCriteria; track criterion.key) {
+            <label class="filter-field">
+              <span>{{ criterion.label }}</span>
+              <select
+                [attr.aria-label]="criterion.label"
+                [value]="selectedFilters()[criterion.key]"
+                (change)="updateFilter(criterion.key, $event)"
+              >
+                @if (filterOptions(criterion.key).length === 0) {
+                  <option value="">Valeurs non renseignées</option>
+                } @else {
+                  <option value="">Toutes</option>
+                  @for (value of filterOptions(criterion.key); track value) {
+                    <option [value]="value">{{ value }}</option>
+                  }
+                }
+              </select>
+            </label>
+          }
+
+          <label class="availability-filter">
+            <input
+              type="checkbox"
+              [checked]="availableOnly()"
+              [disabled]="!hasAvailabilityData()"
+              (change)="updateAvailability($event)"
+            />
+            <span>N’afficher que les produits actuellement disponibles</span>
+          </label>
+          <p class="filter-note">
+            Les placeholders ne peuvent pas être filtrés tant que leurs informations ne sont pas renseignées.
+          </p>
+        </div>
+      </details>
+    </div>
+
+    <div class="product-grid" aria-live="polite">
+      @for (product of visibleProducts(); track product.id) {
+        <article class="product-card">
+          <div class="card-heading">
+            <h2>{{ product.title }}</h2>
+            <button
+              class="favorite-button"
+              type="button"
+              [class.is-favorite]="isFavorite(product.id)"
+              [attr.aria-pressed]="isFavorite(product.id)"
+              [attr.aria-label]="isFavorite(product.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'"
+              (click)="toggleFavorite(product.id)"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M20.8 8.7c0 4.1-8.8 10-8.8 10S3.2 12.8 3.2 8.7A4.5 4.5 0 0 1 12 6.5a4.5 4.5 0 0 1 8.8 2.2Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="product-image">
+            <img src="/assets/images/catalogue-placeholder.svg" alt="Visuel provisoire" />
+          </div>
+
+          <p class="product-description">{{ product.description }}</p>
+          <p class="product-price"><strong>Prix € - Prix €</strong> TTC</p>
+
+          <button
+            class="cart-button"
+            type="button"
+            [attr.aria-pressed]="isInCart(product.id)"
+            (click)="toggleCart(product.id)"
+          >
+            <span>{{ isInCart(product.id) ? 'Pas encore implémenté' : 'Ajouter au panier' }}</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 8h14l1 12H4L5 8Z"></path>
+              <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+            </svg>
+          </button>
+        </article>
+      } @empty {
+        <p class="empty-state">Placeholders provisoires en attendant l'implémentation réelle.</p>
+      }
+    </div>
+
+    <nav class="pagination" aria-label="Pagination du catalogue">
+      <button type="button" [disabled]="currentPage() === 1" (click)="setPage(currentPage() - 1)">
+        Précédent
+      </button>
+      @for (page of pageNumbers(); track page) {
+        <button
+          type="button"
+          [class.is-current]="currentPage() === page"
+          [attr.aria-current]="currentPage() === page ? 'page' : null"
+          [attr.aria-label]="'Page ' + page"
+          (click)="setPage(page)"
+        >
+          {{ page }}
+        </button>
+      }
+      <button
+        type="button"
+        [disabled]="currentPage() === totalPages()"
+        (click)="setPage(currentPage() + 1)"
+      >
+        Suivant
+      </button>
+    </nav>
+  </div>
+</section>

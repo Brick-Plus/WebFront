@@ -1,0 +1,46 @@
+<header class="site-header">
+  <a class="brand" aria-label="Brick+, accueil catalogue" (click)="closeMenu()">
+    <img src="/assets/images/brickplus.png" alt="" />
+  </a>
+
+  <button
+    class="menu-toggle"
+    type="button"
+    aria-label="Afficher le menu"
+    [attr.aria-expanded]="isMenuOpen"
+    aria-controls="primary-navigation"
+    (click)="toggleMenu()"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id="primary-navigation" class="main-nav" [class.is-open]="isMenuOpen" aria-label="Navigation principale">
+    @for (link of navigationLinks; track link) {
+      <a routerLink="/catalogue" (click)="closeMenu()">{{ link }}</a>
+    }
+  </nav>
+
+  <div class="header-actions" aria-label="Raccourcis">
+    <a routerLink="/catalogue" aria-label="Rechercher dans le catalogue">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.6"></circle>
+        <path d="m16 16 4.2 4.2"></path>
+      </svg>
+    </a>
+    <a routerLink="/catalogue" aria-label="Panier">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.5L21 8H6"></path>
+        <circle cx="10" cy="20" r="1"></circle>
+        <circle cx="18" cy="20" r="1"></circle>
+      </svg>
+    </a>
+    <a routerLink="/catalogue" aria-label="Mon compte">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5"></circle>
+        <path d="M5 21v-2.2a7 7 0 0 1 14 0V21"></path>
+      </svg>
+    </a>
+  </div>
+</header>
